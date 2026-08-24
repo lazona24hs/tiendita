@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Polirubro - Tienda Online</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased pb-24">
+
+  <!-- Encabezado -->
+  <header class="bg-indigo-600 text-white sticky top-0 z-40 shadow-md">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+      <h1 class="text-2xl font-bold tracking-tight">🛍️ Polirubro Express</h1>
+      
+      <!-- Buscador -->
+      <div class="relative w-full md:w-96">
+        <input type="text" id="searchInput" oninput="filtrarProductos()" placeholder="Buscar productos..." 
+               class="w-full pl-10 pr-4 py-2 rounded-full text-gray-800 border-none focus:outline-none focus:ring-2 focus:ring-indigo-300 shadow-inner">
+        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-400"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Categorías -->
+  <nav class="bg-white border-b shadow-sm">
+    <div id="categoryContainer" class="max-w-6xl mx-auto px-4 py-3 flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-none">
+      <!-- Se generan dinámicamente -->
+    </div>
+  </nav>
+
+  <!-- Catálogo de Productos -->
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <div id="productsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
+      <!-- Se cargan dinámicamente -->
+    </div>
+  </main>
+
+  <!-- Botón Flotante del Carrito -->
+  <button onclick="toggleCartModal()" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl z-50 flex items-center justify-center transition-transform hover:scale-105">
+    <i class="fa-solid fa-cart-shopping text-2xl"></i>
+    <span id="cartBadge" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-white hidden">0</span>
+  </button>
+
+  <!-- Modal del Carrito -->
+  <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-end hidden">
+    <div class="bg-white w-full max-w-md h-full flex flex-col shadow-xl">
+      <div class="p-4 bg-indigo-600 text-white flex justify-between items-center">
+        <h2 class="text-lg font-bold"><i class="fa-solid fa-basket-shopping mr-2"></i> Tu Pedido</h2>
+        <button onclick="toggleCartModal()" class="text-white hover:text-gray-200 text-xl"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div id="cartItems" class="flex-1 overflow-y-auto p-4 divide-y">
+        <p class="text-center text-gray-500 my-8">El carrito está vacío</p>
+      </div>
+
+      <div class="p-4 border-t bg-gray-50">
+        <div class="flex justify-between items-center text-xl font-bold mb-4">
+          <span>Total:</span>
+          <span id="cartTotal" class="text-indigo-600">$0</span>
+        </div>
+        <button onclick="enviarWhatsApp()" class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg font-bold flex items-center justify-center gap-2 shadow-lg transition">
+          <i class="fa-brands fa-whatsapp text-xl"></i> Finalizar por WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // -------------------------------------------------------------
+    // CONFIGURACIÓN: CAMBIA AQUÍ TU NÚMERO Y TUS PRODUCTOS
+    // -------------------------------------------------------------
+    const WHATSAPP_NUMBER = "5491123456789"; // Tu número con código de país (sin + ni espacios)
+
+    const productos = [
+      { id: 1, nombre: "Cuaderno Rivadavia A4", categoria: "Librería", precio: 2500, img: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400" },
+      { id: 2, nombre: "Cargador Carga Rápida USB-C", categoria: "Electrónica", precio: 6800, img: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400" },
+      { id: 3, nombre: "Set de Mate Térmico", categoria: "Bazar", precio: 12500, img: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=400" },
+      { id: 4, nombre: "Auriculares Inalámbricos", categoria: "Electrónica", precio: 18000, img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400" },
+      { id: 5, nombre: "Set de Lapiceras Color", categoria: "Librería", precio: 3200, img: "https://images.unsplash.com/photo-1585336261026-8f5786372966?w=400" },
+      { id: 6, nombre: "Botella Deportiva 1L", categoria: "Bazar", precio: 5400, img: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400" }
+    ];
+    // -------------------------------------------------------------
+
+    let carrito = [];
+    let categoriaActiva = "Todos";
+
+    function renderizarCategorias() {
+      const categorias = ["Todos", ...new Set(productos.map(p => p.categoria))];
+      const container = document.getElementById("categoryContainer");
+      container.innerHTML = categorias.map(cat => `
+        <button onclick="filtrarPorCategoria('${cat}')" 
+                class="px-4 py-1.5 rounded-full text-sm font-medium transition ${categoriaActiva === cat ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}">
+          ${cat}
+        </button>
+      `).join('');
+    }
+
+    function renderizarProductos(lista) {
+      const grid = document.getElementById("productsGrid");
+      if (lista.length === 0) {
+        grid.innerHTML = `<p class="col-span-full text-center text-gray-500 py-12">No se encontraron productos</p>`;
+        return;
+      }
+
+      grid.innerHTML = lista.map(p => `
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <img src="${p.img}" alt="${p.nombre}" class="w-full h-36 sm:h-48 object-cover">
+            <div class="p-3 sm:p-4">
+              <span class="text-xs text-indigo-500 font-semibold uppercase tracking-wider">${p.categoria}</span>
+              <h3 class="font-bold text-gray-800 text-sm sm:text-base leading-tight mt-1">${p.nombre}</h3>
+            </div>
+          </div>
+          <div class="p-3 sm:p-4 pt-0 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+            <span class="text-lg font-extrabold text-gray-900">$${p.precio.toLocaleString()}</span>
+            <button onclick="agregarAlCarrito(${p.id})" class="w-full sm:w-auto bg-indigo-50 text-indigo-600 hover:bg-indigo-600 hover:text-white px-3 py-1.5 rounded-lg text-sm font-semibold transition flex items-center justify-center gap-1">
+              <i class="fa-solid fa-plus"></i> Agregar
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filtrarProductos() {
+      const texto = document.getElementById("searchInput").value.toLowerCase();
+      const filtrados = productos.filter(p => {
+        const coincideCat = categoriaActiva === "Todos" || p.categoria === categoriaActiva;
+        const coincideTexto = p.nombre.toLowerCase().includes(texto);
+        return coincideCat && coincideTexto;
+      });
+      renderizarProductos(filtrados);
+    }
+
+    function filtrarPorCategoria(cat) {
+      categoriaActiva = cat;
+      renderizarCategorias();
+      filtrarProductos();
+    }
+
+    function agregarAlCarrito(id) {
+      const producto = productos.find(p => p.id === id);
+      const item = carrito.find(i => i.id === id);
+      if (item) {
+        item.cantidad++;
+      } else {
+        carrito.push({ ...producto, cantidad: 1 });
+      }
+      actualizarCarrito();
+    }
+
+    function cambiarCantidad(id, cambio) {
+      const item = carrito.find(i => i.id === id);
+      if (item) {
+        item.cantidad += cambio;
+        if (item.cantidad <= 0) {
+          carrito = carrito.filter(i => i.id !== id);
+        }
+      }
+      actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+      const badge = document.getElementById("cartBadge");
+      const itemsContainer = document.getElementById("cartItems");
+      const totalContainer = document.getElementById("cartTotal");
+
+      const totalItems = carrito.reduce((acc, i) => acc + i.cantidad, 0);
+      const totalPrecio = carrito.reduce((acc, i) => acc + (i.precio * i.cantidad), 0);
+
+      badge.innerText = totalItems;
+      badge.classList.toggle("hidden", totalItems === 0);
+
+      if (carrito.length === 0) {
+        itemsContainer.innerHTML = `<p class="text-center text-gray-500 my-8">El carrito está vacío</p>`;
+      } else {
+        itemsContainer.innerHTML = carrito.map(i => `
+          <div class="py-3 flex justify-between items-center">
+            <div class="flex-1 pr-2">
+              <h4 class="font-bold text-sm">${i.nombre}</h4>
+              <p class="text-xs text-gray-500">$${i.precio.toLocaleString()} x ${i.cantidad}</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="cambiarCantidad(${i.id}, -1)" class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center font-bold text-gray-600">-</button>
+              <span class="text-sm font-bold">${i.cantidad}</span>
+              <button onclick="cambiarCantidad(${i.id}, 1)" class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center font-bold text-gray-600">+</button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      totalContainer.innerText = `$${totalPrecio.toLocaleString()}`;
+    }
+
+    function toggleCartModal() {
+      document.getElementById("cartModal").classList.toggle("hidden");
+    }
+
+    function enviarWhatsApp() {
+      if (carrito.length === 0) return alert("Tu carrito está vacío");
+
+      let mensaje = "¡Hola! Quisiera realizar el siguiente pedido:\n\n";
+      carrito.forEach(i => {
+        mensaje += `• *${i.nombre}* x${i.cantidad} ($${(i.precio * i.cantidad).toLocaleString()})\n`;
+      });
+
+      const total = carrito.reduce((acc, i) => acc + (i.precio * i.cantidad), 0);
+      mensaje += `\n*Total estimado:* $${total.toLocaleString()}`;
+
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`, '_blank');
+    }
+
+    // Inicializar
+    renderizarCategorias();
+    renderizarProductos(productos);
+  </script>
+</body>
+</html>
