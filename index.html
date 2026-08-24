@@ -86,6 +86,21 @@
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans antialiased pb-24">
 
+
+  <!-- Modal Notificación Push -->
+<div id="constructionModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl relative border border-gray-100">
+    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+      <i class="fa-solid fa-helmet-safety"></i>
+    </div>
+    <h3 class="text-lg font-bold text-gray-900 mb-2">¡Sitio en construcción! 🛠️</h3>
+    <p class="text-sm text-gray-600 mb-6">Estamos ajustando los últimos detalles en <strong>MyJ Tienda</strong> para brindarte una mejor experiencia. ¡Gracias por tu paciencia!</p>
+    <button onclick="document.getElementById('constructionModal').remove()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-xl shadow-md transition">
+      Entendido
+    </button>
+  </div>
+</div>
+  
   <!-- Encabezado -->
   <header class="bg-indigo-600 text-white sticky top-0 z-40 shadow-md">
     <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
@@ -312,9 +327,7 @@
       </a>
 </div>
   <br>
-</body>
-
-  <!-- Footer HTML -->
+    <!-- Footer HTML -->
 <footer class="site-footer">
     <div class="footer-container">
         <!-- Columna 1: Información / Sobre Nosotros -->
@@ -349,4 +362,7 @@
         <p>&copy; 2026 MyJ Tienda. Todos los derechos reservados.</p>
     </div>
 </footer>
+</body>
+
+
 </html>
