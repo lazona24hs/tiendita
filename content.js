@@ -1,20 +1,58 @@
- const WHATSAPP_NUMBER = "5493412277147";
+const WHATSAPP_NUMBER = "5493412277147";
 
+    // LISTADO DE PRODUCTOS CON PROPIEDADES DE 'stock' Y 'opciones'
     const productos = [
-      { id: 1, nombre: "Docena de Medias", categoria: "Ropa", precio: 5300, img: "https://i.imgur.com/Gnw11e4.jpeg?w=400", descripcion: "Pack de 12 pares de medias de excelente calidad, suaves y duraderas." },
-      { id: 2, nombre: "Kit Regalo Día de la Madre", categoria: "Regalería", precio: 35000, img: "https://i.imgur.com/GtZghk5.jpeg?w=400", descripcion: "Hermoso set preparado especialmente con selección de artículos de calidad." },
-      { id: 3, nombre: "Set de Mate Térmico", categoria: "Bazar", precio: 55900, img: "https://i.imgur.com/IySj9u8.png?w=400", descripcion: "Mate térmico de acero inoxidable, conserva la temperatura por horas e incluye bombilla." },
-      { id: 4, nombre: "Taza Gris Oscuro Mate", categoria: "Bazar", precio: 4500, img: "https://i.imgur.com/3ihlnrL.png?w=400", descripcion: "Taza de cerámica con acabado mate elegante, ideal para uso diario." },
-      { id: 5, nombre: "Set de Lapiceras Color", categoria: "Librería", precio: 3200, img: "https://i.imgur.com/6dARhQZ.jpeg?w=400", descripcion: "Set variado de lapiceras de tinta gel para apuntes creativos y organizados." },
-      { id: 6, nombre: "Botella Deportiva 1L", categoria: "Bazar", precio: 5400, img: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400", descripcion: "Botella libre de BPA con pico deportivo y medidor de hidratación." },
-      { id: 7, nombre: "Anotador Hello Kitty", categoria: "Librería", precio: 5400, img: "https://i.imgur.com/WhfNPTN.png?w=400", descripcion: "Anotador con tapas duras, hojas rayadas y diseño exclusivo de Hello Kitty." },
-      { id: 8, nombre: "Llaveros Personajes", categoria: "Accesorios", precio: 3000, img: "https://i.imgur.com/MrLNDWP.png?w=400", descripcion: "Llaveros de silicona coleccionables con argolla reforzada." }
+      { id: 1,
+       nombre: "Docena de Medias",
+       categoria: "Ropa", precio: 5300, 
+       stock: true,
+       img: "https://i.imgur.com/Gnw11e4.jpeg?w=400",
+       descripcion: "Pack de 12 pares de medias de excelente calidad, suaves y duraderas." },
+      { id: 2,
+       nombre: "Kit Regalo Día de la Madre", 
+       categoria: "Regalería", precio: 35000, stock: true, 
+       img: "https://i.imgur.com/GtZghk5.jpeg?w=400", 
+       descripcion: "Hermoso set preparado especialmente con selección de artículos de calidad." },
+      { id: 3, 
+       nombre: "Set de Mate Térmico", 
+       categoria: "Bazar", precio: 55900, 
+       stock: true, opciones: ["Negro", "Verde Militar", "Rosa Pastel"],
+       img: "https://i.imgur.com/IySj9u8.png?w=400", descripcion: "Mate térmico de acero inoxidable, conserva la temperatura por horas e incluye bombilla." },
+      { id: 4, 
+       nombre: "Taza Gris Oscuro Mate", 
+       categoria: "Bazar", precio: 4500, 
+       stock: true, 
+       img: "https://i.imgur.com/3ihlnrL.png?w=400",
+       descripcion: "Taza de cerámica con acabado mate elegante, ideal para uso diario." },
+      { id: 5, 
+       nombre: "Set de Lapiceras Color",
+       categoria: "Librería", precio: 3200,
+       stock: true,
+       img: "https://i.imgur.com/6dARhQZ.jpeg?w=400",
+       descripcion: "Set variado de lapiceras de tinta gel para apuntes creativos y organizados." },
+      { id: 6, 
+       nombre: "Botella Deportiva 1L", 
+       categoria: "Bazar", precio: 5400, 
+       stock: true, opciones: ["Azul", "Rosa", "Negro"],
+       img: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400", 
+       descripcion: "Botella libre de BPA con pico deportivo y medidor de hidratación." },
+      { id: 7, 
+       nombre: "Anotador Hello Kitty", 
+       categoria: "Librería", precio: 5400, 
+       stock: false, 
+       img: "https://i.imgur.com/WhfNPTN.png?w=400",
+       descripcion: "Anotador con tapas duras, hojas rayadas y diseño exclusivo de Hello Kitty." },
+      { id: 8, 
+       nombre: "Llaveros Personajes", 
+       categoria: "Accesorios", precio: 3000, 
+       stock: true, opciones: ["Pikachu", "Stitch", "Super Mario", "Spider-Man"],
+       img: "https://i.imgur.com/MrLNDWP.png?w=400", 
+       descripcion: "Llaveros de silicona coleccionables con argolla reinforced. Elegí tu personaje preferido." }
     ];
 
     let carrito = [];
     let categoriaActiva = "Todos";
 
-    // Función para cambiar de modo claro a oscuro
     function toggleLuz() {
       const html = document.documentElement;
       const body = document.body;
@@ -56,26 +94,35 @@
         return;
       }
 
-      grid.innerHTML = lista.map(p => `
-        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden flex flex-col justify-between hover:shadow-lg transition">
-          <div class="cursor-pointer" onclick="verDetalleProducto(${p.id})">
-            <img src="${p.img}" alt="${p.nombre}" class="w-full h-36 sm:h-48 object-cover hover:scale-105 transition duration-300">
-            <div class="p-3 sm:p-4">
-              <span class="text-xs text-indigo-500 dark:text-indigo-400 font-semibold uppercase tracking-wider">${p.categoria}</span>
-              <h3 class="font-bold text-gray-800 dark:text-gray-100 text-sm sm:text-base leading-tight mt-1">${p.nombre}</h3>
+      grid.innerHTML = lista.map(p => {
+        const sinStock = p.stock === false;
+        return `
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden flex flex-col justify-between hover:shadow-lg transition relative ${sinStock ? 'opacity-75' : ''}">
+            
+            ${sinStock ? `<span class="absolute top-2 left-2 z-10 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">SIN STOCK</span>` : ''}
+
+            <div class="cursor-pointer" onclick="verDetalleProducto(${p.id})">
+              <img src="${p.img}" alt="${p.nombre}" class="w-full h-36 sm:h-48 object-cover hover:scale-105 transition duration-300 ${sinStock ? 'grayscale-[50%]' : ''}">
+              <div class="p-3 sm:p-4">
+                <span class="text-xs text-indigo-500 dark:text-indigo-400 font-semibold uppercase tracking-wider">${p.categoria}</span>
+                <h3 class="font-bold text-gray-800 dark:text-gray-100 text-sm sm:text-base leading-tight mt-1">${p.nombre}</h3>
+              </div>
+            </div>
+            
+            <div class="p-3 sm:p-4 pt-0 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+              <span class="text-lg font-extrabold text-gray-900 dark:text-white">$${p.precio.toLocaleString()}</span>
+              
+              <button onclick="verDetalleProducto(${p.id})" 
+                      class="w-full sm:w-auto ${sinStock ? 'bg-gray-300 text-gray-500 dark:bg-gray-700 dark:text-gray-400 cursor-not-allowed' : 'bg-indigo-50 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-300 hover:bg-indigo-600 hover:text-white'} px-3 py-1.5 rounded-lg text-sm font-semibold transition flex items-center justify-center gap-1">
+                ${sinStock ? 'Agotado' : (p.opciones ? 'Elegir' : 'Agregar')}
+              </button>
             </div>
           </div>
-          <div class="p-3 sm:p-4 pt-0 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-            <span class="text-lg font-extrabold text-gray-900 dark:text-white">$${p.precio.toLocaleString()}</span>
-            <button onclick="agregarAlCarrito(${p.id})" class="w-full sm:w-auto bg-indigo-50 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-300 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 dark:hover:text-white px-3 py-1.5 rounded-lg text-sm font-semibold transition flex items-center justify-center gap-1">
-              <i class="fa-solid fa-plus"></i> Agregar
-            </button>
-          </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
-    // Funciones del Modal de Detalle
+    // Modal de Detalle
     function verDetalleProducto(id) {
       const producto = productos.find(p => p.id === id);
       if (!producto) return;
@@ -86,9 +133,40 @@
       document.getElementById('detailProductPrice').innerText = `$${producto.precio.toLocaleString()}`;
       document.getElementById('detailProductDescription').innerText = producto.descripcion || 'Sin descripción disponible.';
 
+      const badge = document.getElementById('detailProductBadge');
       const addBtn = document.getElementById('detailAddBtn');
+      const optionContainer = document.getElementById('optionContainer');
+      const select = document.getElementById('productOptionSelect');
+
+      // Control de Stock
+      if (producto.stock === false) {
+        badge.classList.remove('hidden');
+        addBtn.disabled = true;
+        addBtn.innerText = "Producto Agotado";
+      } else {
+        badge.classList.add('hidden');
+        addBtn.disabled = false;
+        addBtn.innerHTML = `<i class="fa-solid fa-plus"></i> Agregar al carrito`;
+      }
+
+      // Control de Opciones / Personajes
+      if (producto.opciones && producto.opciones.length > 0) {
+        optionContainer.classList.remove('hidden');
+        select.innerHTML = producto.opciones.map(opt => `<option value="${opt}">${opt}</option>`).join('');
+      } else {
+        optionContainer.classList.add('hidden');
+        select.innerHTML = '';
+      }
+
       addBtn.onclick = function() {
-        agregarAlCarrito(producto.id);
+        if (producto.stock === false) return;
+        
+        let opcionSeleccionada = null;
+        if (producto.opciones && producto.opciones.length > 0) {
+          opcionSeleccionada = select.value;
+        }
+
+        agregarAlCarrito(producto.id, opcionSeleccionada);
         cerrarDetalleProducto();
       };
 
@@ -117,23 +195,29 @@
       filtrarProductos();
     }
 
-    function agregarAlCarrito(id) {
+    function agregarAlCarrito(id, opcion = null) {
       const producto = productos.find(p => p.id === id);
-      const item = carrito.find(i => i.id === id);
-      if (item) {
-        item.cantidad++;
+      if (!producto || producto.stock === false) return;
+
+      const cartItemId = opcion ? `${id}-${opcion}` : `${id}`;
+      const itemExistente = carrito.find(i => i.cartItemId === cartItemId);
+
+      if (itemExistente) {
+        itemExistente.cantidad++;
       } else {
-        carrito.push({ ...producto, cantidad: 1 });
+        const nombreMostrado = opcion ? `${producto.nombre} (${opcion})` : producto.nombre;
+        carrito.push({ ...producto, cartItemId, nombreMostrado, opcion, cantidad: 1 });
       }
+
       actualizarCarrito();
     }
 
-    function cambiarCantidad(id, cambio) {
-      const item = carrito.find(i => i.id === id);
+    function cambiarCantidad(cartItemId, cambio) {
+      const item = carrito.find(i => i.cartItemId === cartItemId);
       if (item) {
         item.cantidad += cambio;
         if (item.cantidad <= 0) {
-          carrito = carrito.filter(i => i.id !== id);
+          carrito = carrito.filter(i => i.cartItemId !== cartItemId);
         }
       }
       actualizarCarrito();
@@ -156,13 +240,13 @@
         itemsContainer.innerHTML = carrito.map(i => `
           <div class="py-3 flex justify-between items-center">
             <div class="flex-1 pr-2">
-              <h4 class="font-bold text-sm text-gray-800 dark:text-gray-200">${i.nombre}</h4>
+              <h4 class="font-bold text-sm text-gray-800 dark:text-gray-200">${i.nombreMostrado}</h4>
               <p class="text-xs text-gray-500 dark:text-gray-400">$${i.precio.toLocaleString()} x ${i.cantidad}</p>
             </div>
             <div class="flex items-center gap-2">
-              <button onclick="cambiarCantidad(${i.id}, -1)" class="w-6 h-6 bg-gray-200 dark:bg-gray-700 dark:text-white rounded flex items-center justify-center font-bold text-gray-600">-</button>
+              <button onclick="cambiarCantidad('${i.cartItemId}', -1)" class="w-6 h-6 bg-gray-200 dark:bg-gray-700 dark:text-white rounded flex items-center justify-center font-bold text-gray-600">-</button>
               <span class="text-sm font-bold text-gray-800 dark:text-gray-200">${i.cantidad}</span>
-              <button onclick="cambiarCantidad(${i.id}, 1)" class="w-6 h-6 bg-gray-200 dark:bg-gray-700 dark:text-white rounded flex items-center justify-center font-bold text-gray-600">+</button>
+              <button onclick="cambiarCantidad('${i.cartItemId}', 1)" class="w-6 h-6 bg-gray-200 dark:bg-gray-700 dark:text-white rounded flex items-center justify-center font-bold text-gray-600">+</button>
             </div>
           </div>
         `).join('');
@@ -180,7 +264,7 @@
 
       let mensaje = "¡Hola! Quisiera realizar el siguiente pedido:\n\n";
       carrito.forEach(i => {
-        mensaje += `• *${i.nombre}* x${i.cantidad} ($${(i.precio * i.cantidad).toLocaleString()})\n`;
+        mensaje += `• *${i.nombreMostrado}* x${i.cantidad} ($${(i.precio * i.cantidad).toLocaleString()})\n`;
       });
 
       const total = carrito.reduce((acc, i) => acc + (i.precio * i.cantidad), 0);
@@ -189,6 +273,6 @@
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`, '_blank');
     }
 
-    // Inicializar
+    // Inicialización
     renderizarCategorias();
     renderizarProductos(productos);
