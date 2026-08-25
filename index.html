@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#FF0000">
-  <!-- Etiquetas Meta Principales -->
+
   <title>MyJ Tienda | Envíos Gratis en Rosario - Librería, Electrónica y Bazar</title>
   <meta name="title" content="MyJ Tienda | Envíos Gratis en Rosario - Librería, Electrónica y Bazar">
   <meta name="description" content="Encontrá las mejores ofertas en artículos de librería, accesorios de electrónica y bazar en Rosario. Envíos gratis pagando con Mercado Pago.">
@@ -13,14 +12,12 @@
   <meta name="language" content="Spanish">
   <meta name="author" content="MyJ Tienda">
 
-  <!-- Open Graph / Facebook / WhatsApp -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://myjtienda.sytes.net/">
   <meta property="og:title" content="MyJ Tienda | Librería, Electrónica y Bazar en Rosario">
   <meta property="og:description" content="Aprovechá nuestros productos en stock con envío gratis pagando con Mercado Pago. ¡Comprá fácil y rápido!">
   <meta property="og:image" content="https://myjtienda.sytes.net/imagen-preview.jpg">
 
-  <!-- Twitter / X -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://myjtienda.sytes.net/">
   <meta property="twitter:title" content="MyJ Tienda | Librería, Electrónica y Bazar en Rosario">
@@ -45,14 +42,9 @@
     tailwind.config = {
       darkMode: 'class'
     }
-    
   </script>
-
- 
-  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Favicon -->
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -60,7 +52,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-title" content="MyJ Store" />
   <link rel="manifest" href="/site.webmanifest" />
-<link rel="manifest" href="/manifest.json">
+
   <style>
     /* Transición suave para el cambio de modo de luz */
     body, header, nav, div, main, footer, button, input {
@@ -134,7 +126,6 @@
 </head>
 <body class="bg-gray-900 text-gray-100 font-sans antialiased pb-24 dark:bg-gray-900 dark:text-gray-100">
 
-  <!-- Modal Notificación Push -->
   <div id="constructionModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl relative border border-gray-100 dark:border-gray-700">
       <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
@@ -148,35 +139,28 @@
     </div>
   </div>
   
-  <!-- Encabezado con Buscador y Redes Sociales + Luz -->
   <header class="bg-indigo-600 dark:bg-indigo-900 text-white sticky top-0 z-40 shadow-md">
     <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
       <h1 class="text-2xl font-bold tracking-tight">🛍️ MyJ Tienda</h1>
       
-      <!-- Buscador y Acciones (Instagram, WhatsApp y Botón Luz) -->
       <div class="flex items-center gap-3 w-full md:w-auto">
-        <!-- Buscador -->
         <div class="relative flex-1 md:w-80">
           <input type="text" id="searchInput" oninput="filtrarProductos()" placeholder="Buscar productos..." 
                  class="w-full pl-10 pr-4 py-2 rounded-full text-gray-800 dark:text-white dark:bg-gray-800 border-none focus:outline-none focus:ring-2 focus:ring-indigo-300 shadow-inner placeholder-gray-400">
           <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-400"></i>
         </div>
 
-        <!-- Botones Redes Sociales y Selector de Luz -->
         <div class="flex items-center gap-2">
-          <!-- Instagram -->
-          <a href="https://instagram.com/myjtiendarosario" target="_blank" title="Instagram"
+          <a href="https://instagram.com/tu_usuario" target="_blank" title="Instagram"
              class="w-10 h-10 bg-white/10 dark:bg-gray-800 hover:bg-pink-600 text-white rounded-full flex items-center justify-center transition hover:scale-105 border border-white/20">
             <i class="fa-brands fa-instagram text-lg"></i>
           </a>
 
-          <!-- WhatsApp -->
           <a href="https://wa.me/5493412277147" target="_blank" title="WhatsApp"
              class="w-10 h-10 bg-white/10 dark:bg-gray-800 hover:bg-green-500 text-white rounded-full flex items-center justify-center transition hover:scale-105 border border-white/20">
             <i class="fa-brands fa-whatsapp text-lg"></i>
           </a>
 
-          <!-- Botón Encender / Apagar Luz -->
           <button id="lightToggleBtn" onclick="toggleLuz()" title="Encender/Apagar Luz"
                   class="w-10 h-10 bg-amber-400 dark:bg-gray-800 hover:bg-amber-300 dark:hover:bg-gray-700 text-gray-900 dark:text-yellow-300 rounded-full flex items-center justify-center transition hover:scale-105 border border-amber-300 dark:border-gray-700 shadow-sm">
             <i id="lightIcon" class="fa-solid fa-lightbulb text-lg"></i>
@@ -195,27 +179,46 @@
     </a>
   </div>
 
-  <!-- Categorías -->
   <nav class="bg-white dark:bg-gray-800 border-b dark:border-gray-700 shadow-sm">
     <div id="categoryContainer" class="max-w-6xl mx-auto px-4 py-3 flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-none">
-      <!-- Se generan dinámicamente -->
-    </div>
+      </div>
   </nav>
 
-  <!-- Catálogo de Productos -->
   <main class="max-w-6xl mx-auto px-4 py-8">
     <div id="productsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
-      <!-- Se cargan dinámicamente -->
-    </div>
+      </div>
   </main>
 
-  <!-- Botón Flotante del Carrito -->
   <button onclick="toggleCartModal()" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl z-50 flex items-center justify-center transition-transform hover:scale-105">
     <i class="fa-solid fa-cart-shopping text-2xl"></i>
     <span id="cartBadge" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-white hidden">0</span>
   </button>
 
-  <!-- Modal del Carrito -->
+  <div id="productDetailModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden" onclick="cerrarDetalleProducto(event)">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative border border-gray-100 dark:border-gray-700 flex flex-col md:flex-row gap-6 max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+      <button onclick="cerrarDetalleProducto()" class="absolute top-3 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-white text-2xl font-bold z-10">
+        &times;
+      </button>
+      
+      <div class="w-full md:w-1/2 flex items-center justify-center bg-gray-100 dark:bg-gray-900 rounded-xl overflow-hidden min-h-[220px]">
+        <img id="detailProductImage" src="" alt="" class="w-full h-full object-contain max-h-64">
+      </div>
+
+      <div class="w-full md:w-1/2 flex flex-col justify-between">
+        <div>
+          <span id="detailProductCategory" class="text-xs font-bold tracking-wider text-indigo-600 dark:text-indigo-400 uppercase"></span>
+          <h3 id="detailProductTitle" class="text-xl font-bold text-gray-900 dark:text-white mt-1 mb-2"></h3>
+          <p id="detailProductPrice" class="text-2xl font-bold text-green-600 dark:text-green-400 mb-3"></p>
+          <p id="detailProductDescription" class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-4"></p>
+        </div>
+        
+        <button id="detailAddBtn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-plus"></i> Agregar al carrito
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div id="cartModal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex justify-end hidden">
     <div class="bg-white dark:bg-gray-800 w-full max-w-md h-full flex flex-col shadow-xl">
       <div class="p-4 bg-indigo-600 dark:bg-indigo-900 text-white flex justify-between items-center">
@@ -248,13 +251,11 @@
     </a>
   </div>
 
-  <!-- Footer HTML -->
   <footer class="site-footer bg-gray-950 dark:bg-black text-gray-300 border-t border-gray-800">
     <div class="footer-container">
       <div class="footer-column">
         <h4 class="text-white">Sobre Nosotros</h4>
         <p class="text-gray-400">Ofrecemos las mejores soluciones y productos para nuestros clientes. Calidad y compromiso garantizados en cada compra.</p>
-
       </div>
 
       <div class="footer-column">
@@ -274,7 +275,6 @@
           <li>📧 myjtienda@gmail.com</li>
           <li>💳 Envíos gratis pagando con Mercado Pago</li>
         </ul>
-   
       </div>
     </div>
 
