@@ -2,11 +2,12 @@ const WHATSAPP_NUMBER = "5493412277147";
 
     const productos = [
       { id: 1, nombre: "Docena de Medias", categoria: "Ropa", precio: 5300, img: "https://i.imgur.com/Gnw11e4.jpeg?w=400" },
-      { id: 2, nombre: "Kit Regalo Dia de la Madre", categoria: "Regaleria", precio: 35000, img: "https://i.imgur.com/GtZghk5.jpeg?w=400" },
-      { id: 3, nombre: "Set de Mate Térmico", categoria: "Bazar", precio: 12500, img: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=400" },
+      { id: 2, nombre: "Kit Regalo Día de la Madre", categoria: "Regalería", precio: 35000, img: "https://i.imgur.com/GtZghk5.jpeg?w=400" },
+      { id: 3, nombre: "Set de Mate Térmico", categoria: "Bazar", precio: 55900, img: "https://i.imgur.com/IySj9u8.png?w=400" },
       { id: 4, nombre: "Auriculares Inalámbricos", categoria: "Electrónica", precio: 18000, img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400" },
-      { id: 5, nombre: "Set de Lapiceras Color", categoria: "Librería", precio: 3200, img: "https://images.unsplash.com/photo-1585336261026-8f5786372966?w=400" },
+      { id: 5, nombre: "Set de Lapiceras Color", categoria: "Librería", precio: 3200, img: "https://i.imgur.com/6dARhQZ.jpeg?w=400" },
       { id: 6, nombre: "Botella Deportiva 1L", categoria: "Bazar", precio: 5400, img: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400" }
+         { id: 7, nombre: "Anotador Hello Kitty", categoria: "Librería", precio: 5400, img: "https://i.imgur.com/WhfNPTN.png?w=400" }
     ];
 
     let carrito = [];
