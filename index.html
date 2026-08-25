@@ -1,191 +1,198 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Etiquetas Meta Principales -->
-<title>MyJ Tienda | Envíos Gratis en Rosario - Librería, Electrónica y Bazar</title>
-<meta name="title" content="MyJ Tienda | Envíos Gratis en Rosario - Librería, Electrónica y Bazar">
-<meta name="description" content="Encontrá las mejores ofertas en artículos de librería, accesorios de electrónica y bazar en Rosario. Envíos gratis pagando con Mercado Pago.">
-<meta name="keywords" content="MyJ Tienda, tienda online Rosario, librería Rosario, cuadernos Rivadavia, accesorios electrónica, bazar Rosario, cargador USB-C, mate térmico, envíos gratis Mercado Pago">
-<meta name="robots" content="index, follow">
-<meta name="language" content="Spanish">
-<meta name="author" content="MyJ Tienda">
+  <title>MyJ Tienda | Envíos Gratis en Rosario - Librería, Electrónica y Bazar</title>
+  <meta name="title" content="MyJ Tienda | Envíos Gratis en Rosario - Librería, Electrónica y Bazar">
+  <meta name="description" content="Encontrá las mejores ofertas en artículos de librería, accesorios de electrónica y bazar en Rosario. Envíos gratis pagando con Mercado Pago.">
+  <meta name="keywords" content="MyJ Tienda, tienda online Rosario, librería Rosario, cuadernos Rivadavia, accesorios electrónica, bazar Rosario, cargador USB-C, mate térmico, envíos gratis Mercado Pago">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="Spanish">
+  <meta name="author" content="MyJ Tienda">
 
-<!-- Open Graph / Facebook / WhatsApp (Para compartir en redes) -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://myjtienda.sytes.net/">
-<meta property="og:title" content="MyJ Tienda | Librería, Electrónica y Bazar en Rosario">
-<meta property="og:description" content="Aprovechá nuestros productos en stock con envío gratis pagando con Mercado Pago. ¡Comprá fácil y rápido!">
-<meta property="og:image" content="https://myjtienda.sytes.net/imagen-preview.jpg"> <!-- Reemplaza por el enlace a tu logo o imagen representativa -->
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://myjtienda.sytes.net/">
+  <meta property="og:title" content="MyJ Tienda | Librería, Electrónica y Bazar en Rosario">
+  <meta property="og:description" content="Aprovechá nuestros productos en stock con envío gratis pagando con Mercado Pago. ¡Comprá fácil y rápido!">
+  <meta property="og:image" content="https://myjtienda.sytes.net/imagen-preview.jpg">
 
-<!-- Twitter / X -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://myjtienda.sytes.net/">
-<meta property="twitter:title" content="MyJ Tienda | Librería, Electrónica y Bazar en Rosario">
-<meta property="twitter:description" content="Aprovechá nuestros productos en stock con envío gratis pagando con Mercado Pago.">
-<meta property="twitter:image" content="https://myjtienda.sytes.net/imagen-preview.jpg">
+  <!-- Twitter / X -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://myjtienda.sytes.net/">
+  <meta property="twitter:title" content="MyJ Tienda | Librería, Electrónica y Bazar en Rosario">
+  <meta property="twitter:description" content="Aprovechá nuestros productos en stock con envío gratis pagando con Mercado Pago.">
+  <meta property="twitter:image" content="https://myjtienda.sytes.net/imagen-preview.jpg">
 
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "OnlineStore",
-  "name": "MyJ Tienda",
-  "url": "https://myjtienda.sytes.net/",
-  "email": "myjtienda@gmail.com",
-  "areaServed": "Rosario, Santa Fe, Argentina",
-  "description": "Tienda online de librería, electrónica y bazar con envíos en Rosario.",
-  "paymentAccepted": "Mercado Pago"
-}
-</script>
+  {
+    "@context": "https://schema.org",
+    "@type": "OnlineStore",
+    "name": "MyJ Tienda",
+    "url": "https://myjtienda.sytes.net/",
+    "email": "myjtienda@gmail.com",
+    "areaServed": "Rosario, Santa Fe, Argentina",
+    "description": "Tienda online de librería, electrónica y bazar con envíos en Rosario.",
+    "paymentAccepted": "Mercado Pago"
+  }
+  </script>
   
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Favicon vectorial para la mayoría de los navegadores modernos -->
-<link rel="shortcut icon" href="/favicon.ico" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="MyJ Store" />
+  <link rel="manifest" href="/site.webmanifest" />
 
-<!-- Respaldo en PNG para compatibilidad -->
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-<!-- Icono para dispositivos Apple (pantalla de inicio en iOS) -->
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<meta name="apple-mobile-web-app-title" content="MyJ Store" />
-<link rel="manifest" href="/site.webmanifest" />
-  <!-- Estilos CSS -->
-<style>
+  <style>
+    /* Transición suave para el cambio de modo de luz */
+    body, header, nav, div, main, footer, button, input {
+      transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+
     .site-footer {
-        background-color: #1a1a1a;
-        color: #cccccc;
-        padding: 40px 20px 20px 20px;
-        font-family: system-ui, -apple-system, sans-serif;
-        font-size: 0.9rem;
+      padding: 40px 20px 20px 20px;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.9rem;
     }
 
     .footer-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
-        text-align: center; /* Centrado general para dispositivos móviles */
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      text-align: center;
     }
 
-    /* Alineación sin centrar para pantallas medianas y grandes */
     @media (min-width: 768px) {
-        .footer-container {
-            text-align: left; /* Todo el texto alineado a la izquierda */
-        }
+      .footer-container {
+        text-align: left;
+      }
     }
 
     .footer-column h4 {
-        color: #ffffff;
-        font-size: 1.1rem;
-        margin-bottom: 15px;
-        position: relative;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      position: relative;
     }
 
     .footer-column p {
-        line-height: 1.6;
+      line-height: 1.6;
     }
 
-    .footer-links, 
-    .footer-contact {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+    .footer-links, .footer-contact {
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
 
-    .footer-links li, 
-    .footer-contact li {
-        margin-bottom: 10px;
+    .footer-links li, .footer-contact li {
+      margin-bottom: 10px;
     }
 
     .footer-links a {
-        color: #cccccc;
-        text-decoration: none;
-        transition: color 0.2s ease;
+      text-decoration: none;
+      transition: color 0.2s ease;
     }
 
     .footer-links a:hover {
-        color: #ffffff;
-        text-decoration: underline;
+      text-decoration: underline;
     }
 
     .footer-bottom {
-        max-width: 1200px;
-        margin: 30px auto 0 auto;
-        padding-top: 20px;
-        border-top: 1px solid #333333;
-        text-align: left; /* Mantiene la barra de derechos reservados alineada a la izquierda */
-        font-size: 0.8rem;
-        color: #888888;
+      max-width: 1200px;
+      margin: 30px auto 0 auto;
+      padding-top: 20px;
+      text-align: left;
+      font-size: 0.8rem;
     }
 
     @media (max-width: 767px) {
-        .footer-bottom {
-            text-align: center;
-        }
+      .footer-bottom {
+        text-align: center;
+      }
     }
-</style>
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans antialiased pb-24">
-
+<body class="bg-gray-900 text-gray-100 font-sans antialiased pb-24 dark:bg-gray-900 dark:text-gray-100">
 
   <!-- Modal Notificación Push -->
-<div id="constructionModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-  <div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl relative border border-gray-100">
-    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
-      <i class="fa-solid fa-helmet-safety"></i>
+  <div id="constructionModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl relative border border-gray-100 dark:border-gray-700">
+      <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+        <i class="fa-solid fa-helmet-safety"></i>
+      </div>
+      <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">¡Sitio en construcción! 🛠️</h3>
+      <p class="text-sm text-gray-600 dark:text-gray-300 mb-6">Estamos ajustando los últimos detalles en <strong>MyJ Tienda</strong> para brindarte una mejor experiencia. ¡Gracias por tu paciencia!</p>
+      <button onclick="document.getElementById('constructionModal').remove()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-xl shadow-md transition">
+        Entendido
+      </button>
     </div>
-    <h3 class="text-lg font-bold text-gray-900 mb-2">¡Sitio en construcción! 🛠️</h3>
-    <p class="text-sm text-gray-600 mb-6">Estamos ajustando los últimos detalles en <strong>MyJ Tienda</strong> para brindarte una mejor experiencia. ¡Gracias por tu paciencia!</p>
-    <button onclick="document.getElementById('constructionModal').remove()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-xl shadow-md transition">
-      Entendido
-    </button>
   </div>
-</div>
   
-  <!-- Encabezado -->
-  <header class="bg-indigo-600 text-white sticky top-0 z-40 shadow-md">
+  <!-- Encabezado con Buscador y Redes Sociales + Luz -->
+  <header class="bg-indigo-600 dark:bg-indigo-900 text-white sticky top-0 z-40 shadow-md">
     <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-      <h1 class="text-2xl font-bold tracking-tight">🛍️ MyJ Tienda </h1>
+      <h1 class="text-2xl font-bold tracking-tight">🛍️ MyJ Tienda</h1>
       
-      <!-- Buscador -->
-      <div class="social-icons">
-  <!-- Reemplaza "tu_usuario" por tu usuario de Instagram -->
-  <a href="https://instagram.com/myjtiendarosario" target="_blank" class="social-icon instagram" title="Instagram">
-    <i class="fab fa-instagram"></i>
-  </a>
+      <!-- Buscador y Acciones (Instagram, WhatsApp y Botón Luz) -->
+      <div class="flex items-center gap-3 w-full md:w-auto">
+        <!-- Buscador -->
+        <div class="relative flex-1 md:w-80">
+          <input type="text" id="searchInput" oninput="filtrarProductos()" placeholder="Buscar productos..." 
+                 class="w-full pl-10 pr-4 py-2 rounded-full text-gray-800 dark:text-white dark:bg-gray-800 border-none focus:outline-none focus:ring-2 focus:ring-indigo-300 shadow-inner placeholder-gray-400">
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-400"></i>
+        </div>
 
-  <!-- Reemplaza el número por tu WhatsApp  -->
-  <a href="https://whatsapp.com/channel/0029VbCZ6Sq3GJOsuPPRB828" target="_blank" class="social-icon whatsapp" title="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-</div>
-      <div class="relative w-full md:w-96">
-        <input type="text" id="searchInput" oninput="filtrarProductos()" placeholder="Buscar productos..." 
-               class="w-full pl-10 pr-4 py-2 rounded-full text-gray-800 border-none focus:outline-none focus:ring-2 focus:ring-indigo-300 shadow-inner">
-        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-400"></i>
+        <!-- Botones Redes Sociales y Selector de Luz -->
+        <div class="flex items-center gap-2">
+          <!-- Instagram -->
+          <a href="https://instagram.com/tu_usuario" target="_blank" title="Instagram"
+             class="w-10 h-10 bg-white/10 dark:bg-gray-800 hover:bg-pink-600 text-white rounded-full flex items-center justify-center transition hover:scale-105 border border-white/20">
+            <i class="fa-brands fa-instagram text-lg"></i>
+          </a>
+
+          <!-- WhatsApp -->
+          <a href="https://wa.me/5493412277147" target="_blank" title="WhatsApp"
+             class="w-10 h-10 bg-white/10 dark:bg-gray-800 hover:bg-green-500 text-white rounded-full flex items-center justify-center transition hover:scale-105 border border-white/20">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+          </a>
+
+          <!-- Botón Encender / Apagar Luz -->
+          <button id="lightToggleBtn" onclick="toggleLuz()" title="Encender/Apagar Luz"
+                  class="w-10 h-10 bg-amber-400 dark:bg-gray-800 hover:bg-amber-300 dark:hover:bg-gray-700 text-gray-900 dark:text-yellow-300 rounded-full flex items-center justify-center transition hover:scale-105 border border-amber-300 dark:border-gray-700 shadow-sm">
+            <i id="lightIcon" class="fa-solid fa-lightbulb text-lg"></i>
+          </button>
+        </div>
       </div>
     </div>
   </header>
 
-
-  <div align="center">
+  <div align="center" class="py-2">
     <a href="https://whatsapp.com/channel/0029VbCZ6Sq3GJOsuPPRB828">
-  <picture>
-    <source media="(max-width: 600px)" srcset="https://myjtienda.sytes.net/publicidad.gif">
-    <img src="https://myjtienda.sytes.net/publicidad.gif" alt="Publicidad" width="100%">
-  </picture>
-      </a>
-</div>
-<br>
+      <picture>
+        <source media="(max-width: 600px)" srcset="https://myjtienda.sytes.net/publicidad.gif">
+        <img src="https://myjtienda.sytes.net/publicidad.gif" alt="Publicidad" width="100%">
+      </picture>
+    </a>
+  </div>
 
   <!-- Categorías -->
-  <nav class="bg-white border-b shadow-sm">
+  <nav class="bg-white dark:bg-gray-800 border-b dark:border-gray-700 shadow-sm">
     <div id="categoryContainer" class="max-w-6xl mx-auto px-4 py-3 flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-none">
       <!-- Se generan dinámicamente -->
     </div>
@@ -205,21 +212,21 @@
   </button>
 
   <!-- Modal del Carrito -->
-  <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-end hidden">
-    <div class="bg-white w-full max-w-md h-full flex flex-col shadow-xl">
-      <div class="p-4 bg-indigo-600 text-white flex justify-between items-center">
+  <div id="cartModal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex justify-end hidden">
+    <div class="bg-white dark:bg-gray-800 w-full max-w-md h-full flex flex-col shadow-xl">
+      <div class="p-4 bg-indigo-600 dark:bg-indigo-900 text-white flex justify-between items-center">
         <h2 class="text-lg font-bold"><i class="fa-solid fa-basket-shopping mr-2"></i> Tu Pedido</h2>
         <button onclick="toggleCartModal()" class="text-white hover:text-gray-200 text-xl"><i class="fa-solid fa-xmark"></i></button>
       </div>
 
-      <div id="cartItems" class="flex-1 overflow-y-auto p-4 divide-y">
-        <p class="text-center text-gray-500 my-8">El carrito está vacío</p>
+      <div id="cartItems" class="flex-1 overflow-y-auto p-4 divide-y dark:divide-gray-700">
+        <p class="text-center text-gray-500 dark:text-gray-400 my-8">El carrito está vacío</p>
       </div>
 
-      <div class="p-4 border-t bg-gray-50">
-        <div class="flex justify-between items-center text-xl font-bold mb-4">
+      <div class="p-4 border-t dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+        <div class="flex justify-between items-center text-xl font-bold mb-4 text-gray-900 dark:text-white">
           <span>Total:</span>
-          <span id="cartTotal" class="text-indigo-600">$0</span>
+          <span id="cartTotal" class="text-indigo-600 dark:text-indigo-400">$0</span>
         </div>
         <button onclick="enviarWhatsApp()" class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg font-bold flex items-center justify-center gap-2 shadow-lg transition">
           <i class="fa-brands fa-whatsapp text-xl"></i> Finalizar por WhatsApp
@@ -228,11 +235,50 @@
     </div>
   </div>
 
+  <div align="center" class="py-2">
+    <a href="https://whatsapp.com/channel/0029VbCZ6Sq3GJOsuPPRB828">
+      <picture>
+        <source media="(max-width: 600px)" srcset="https://myjtienda.sytes.net/envio.gif">
+        <img src="https://myjtienda.sytes.net/envio.gif" alt="Publicidad" width="100%">
+      </picture>
+    </a>
+  </div>
+
+  <!-- Footer HTML -->
+  <footer class="site-footer bg-gray-950 dark:bg-black text-gray-300 border-t border-gray-800">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h4 class="text-white">Sobre Nosotros</h4>
+        <p class="text-gray-400">Ofrecemos las mejores soluciones y productos para nuestros clientes. Calidad y compromiso garantizados en cada compra.</p>
+      </div>
+
+      <div class="footer-column">
+        <h4 class="text-white">Enlaces Rápidos</h4>
+        <ul class="footer-links">
+          <li><a href="#" class="text-gray-400 hover:text-white">Inicio</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Productos</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Preguntas Frecuentes</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4 class="text-white">Contacto</h4>
+        <ul class="footer-contact text-gray-400">
+          <li>📍 Rosario, Santa Fe</li>
+          <li>📧 myjtienda@gmail.com</li>
+          <li>💳 Envíos gratis pagando con Mercado Pago</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom border-t border-gray-800 text-gray-500">
+      <p>&copy; 2026 MyJ Tienda. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
   <script>
-    // -------------------------------------------------------------
-    // CONFIGURACIÓN: CAMBIA AQUÍ TU NÚMERO Y TUS PRODUCTOS
-    // -------------------------------------------------------------
-    const WHATSAPP_NUMBER = "5493412277147"; // Tu número con código de país (sin + ni espacios)
+    const WHATSAPP_NUMBER = "5493412277147";
 
     const productos = [
       { id: 1, nombre: "Cuaderno Rivadavia A4", categoria: "Librería", precio: 2500, img: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400" },
@@ -242,17 +288,40 @@
       { id: 5, nombre: "Set de Lapiceras Color", categoria: "Librería", precio: 3200, img: "https://images.unsplash.com/photo-1585336261026-8f5786372966?w=400" },
       { id: 6, nombre: "Botella Deportiva 1L", categoria: "Bazar", precio: 5400, img: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400" }
     ];
-    // -------------------------------------------------------------
 
     let carrito = [];
     let categoriaActiva = "Todos";
 
+    // Función para cambiar de modo claro a oscuro
+    function toggleLuz() {
+      const html = document.documentElement;
+      const body = document.body;
+      const lightIcon = document.getElementById("lightIcon");
+      const isDark = html.classList.contains("dark");
+
+      if (isDark) {
+        html.classList.remove("dark");
+        body.classList.remove("bg-gray-900", "text-gray-100");
+        body.classList.add("bg-gray-50", "text-gray-800");
+        lightIcon.className = "fa-solid fa-moon text-lg";
+      } else {
+        html.classList.add("dark");
+        body.classList.remove("bg-gray-50", "text-gray-800");
+        body.classList.add("bg-gray-900", "text-gray-100");
+        lightIcon.className = "fa-solid fa-lightbulb text-lg";
+      }
+      renderizarCategorias();
+      filtrarProductos();
+    }
+
     function renderizarCategorias() {
       const categorias = ["Todos", ...new Set(productos.map(p => p.categoria))];
       const container = document.getElementById("categoryContainer");
+      const isDark = document.documentElement.classList.contains("dark");
+
       container.innerHTML = categorias.map(cat => `
         <button onclick="filtrarPorCategoria('${cat}')" 
-                class="px-4 py-1.5 rounded-full text-sm font-medium transition ${categoriaActiva === cat ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}">
+                class="px-4 py-1.5 rounded-full text-sm font-medium transition ${categoriaActiva === cat ? 'bg-indigo-600 text-white' : (isDark ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-100 text-gray-600 hover:bg-gray-200')}">
           ${cat}
         </button>
       `).join('');
@@ -261,22 +330,22 @@
     function renderizarProductos(lista) {
       const grid = document.getElementById("productsGrid");
       if (lista.length === 0) {
-        grid.innerHTML = `<p class="col-span-full text-center text-gray-500 py-12">No se encontraron productos</p>`;
+        grid.innerHTML = `<p class="col-span-full text-center text-gray-500 dark:text-gray-400 py-12">No se encontraron productos</p>`;
         return;
       }
 
       grid.innerHTML = lista.map(p => `
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between hover:shadow-md transition">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden flex flex-col justify-between hover:shadow-lg transition">
           <div>
             <img src="${p.img}" alt="${p.nombre}" class="w-full h-36 sm:h-48 object-cover">
             <div class="p-3 sm:p-4">
-              <span class="text-xs text-indigo-500 font-semibold uppercase tracking-wider">${p.categoria}</span>
-              <h3 class="font-bold text-gray-800 text-sm sm:text-base leading-tight mt-1">${p.nombre}</h3>
+              <span class="text-xs text-indigo-500 dark:text-indigo-400 font-semibold uppercase tracking-wider">${p.categoria}</span>
+              <h3 class="font-bold text-gray-800 dark:text-gray-100 text-sm sm:text-base leading-tight mt-1">${p.nombre}</h3>
             </div>
           </div>
           <div class="p-3 sm:p-4 pt-0 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-            <span class="text-lg font-extrabold text-gray-900">$${p.precio.toLocaleString()}</span>
-            <button onclick="agregarAlCarrito(${p.id})" class="w-full sm:w-auto bg-indigo-50 text-indigo-600 hover:bg-indigo-600 hover:text-white px-3 py-1.5 rounded-lg text-sm font-semibold transition flex items-center justify-center gap-1">
+            <span class="text-lg font-extrabold text-gray-900 dark:text-white">$${p.precio.toLocaleString()}</span>
+            <button onclick="agregarAlCarrito(${p.id})" class="w-full sm:w-auto bg-indigo-50 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-300 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 dark:hover:text-white px-3 py-1.5 rounded-lg text-sm font-semibold transition flex items-center justify-center gap-1">
               <i class="fa-solid fa-plus"></i> Agregar
             </button>
           </div>
@@ -334,18 +403,18 @@
       badge.classList.toggle("hidden", totalItems === 0);
 
       if (carrito.length === 0) {
-        itemsContainer.innerHTML = `<p class="text-center text-gray-500 my-8">El carrito está vacío</p>`;
+        itemsContainer.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400 my-8">El carrito está vacío</p>`;
       } else {
         itemsContainer.innerHTML = carrito.map(i => `
           <div class="py-3 flex justify-between items-center">
             <div class="flex-1 pr-2">
-              <h4 class="font-bold text-sm">${i.nombre}</h4>
-              <p class="text-xs text-gray-500">$${i.precio.toLocaleString()} x ${i.cantidad}</p>
+              <h4 class="font-bold text-sm text-gray-800 dark:text-gray-200">${i.nombre}</h4>
+              <p class="text-xs text-gray-500 dark:text-gray-400">$${i.precio.toLocaleString()} x ${i.cantidad}</p>
             </div>
             <div class="flex items-center gap-2">
-              <button onclick="cambiarCantidad(${i.id}, -1)" class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center font-bold text-gray-600">-</button>
-              <span class="text-sm font-bold">${i.cantidad}</span>
-              <button onclick="cambiarCantidad(${i.id}, 1)" class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center font-bold text-gray-600">+</button>
+              <button onclick="cambiarCantidad(${i.id}, -1)" class="w-6 h-6 bg-gray-200 dark:bg-gray-700 dark:text-white rounded flex items-center justify-center font-bold text-gray-600">-</button>
+              <span class="text-sm font-bold text-gray-800 dark:text-gray-200">${i.cantidad}</span>
+              <button onclick="cambiarCantidad(${i.id}, 1)" class="w-6 h-6 bg-gray-200 dark:bg-gray-700 dark:text-white rounded flex items-center justify-center font-bold text-gray-600">+</button>
             </div>
           </div>
         `).join('');
@@ -376,51 +445,5 @@
     renderizarCategorias();
     renderizarProductos(productos);
   </script>
-   <div align="center">
-    <a href="https://whatsapp.com/channel/0029VbCZ6Sq3GJOsuPPRB828">
-  <picture>
-    <source media="(max-width: 600px)" srcset="https://myjtienda.sytes.net/envio.gif">
-    <img src="https://myjtienda.sytes.net/envio.gif" alt="Publicidad" width="100%">
-  </picture>
-      </a>
-</div>
-  <br>
-    <!-- Footer HTML -->
-<footer class="site-footer">
-    <div class="footer-container">
-        <!-- Columna 1: Información / Sobre Nosotros -->
-        <div class="footer-column">
-            <h4>Sobre Nosotros</h4>
-            <p>Ofrecemos las mejores soluciones y productos para nuestros clientes. Calidad y compromiso garantizados en cada compra.</p>
-        </div>
-
-        <!-- Columna 2: Enlaces Rápidos -->
-        <div class="footer-column">
-            <h4>Enlaces Rápidos</h4>
-            <ul class="footer-links">
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Productos</a></li>
-                <li><a href="#">Preguntas Frecuentes</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-        </div>
-
-        <!-- Columna 3: Contacto y Medios de Pago -->
-        <div class="footer-column">
-            <h4>Contacto</h4>
-            <ul class="footer-contact">
-                <li>📍 Rosario, Santa Fe</li>
-                <li>📧 myjtienda@gmail.com</li>
-                <li>💳 Envíos gratis pagando con Mercado Pago</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="footer-bottom">
-        <p>&copy; 2026 MyJ Tienda. Todos los derechos reservados.</p>
-    </div>
-</footer>
 </body>
-
-
 </html>
