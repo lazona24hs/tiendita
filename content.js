@@ -2,7 +2,7 @@ const WHATSAPP_NUMBER = "5493412277147";
 
     const productos = [
       { id: 1, nombre: "Docena de Medias", categoria: "Ropa", precio: 5300, img: "https://i.imgur.com/Gnw11e4.jpeg?w=400" },
-      { id: 2, nombre: "Cargador Carga Rápida USB-C", categoria: "Electrónica", precio: 6800, img: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400" },
+      { id: 2, nombre: "Kit Regalo Dia de la Madre", categoria: "Regaleria", precio: 35000, img: "https://i.imgur.com/GtZghk5.jpeg?w=400" },
       { id: 3, nombre: "Set de Mate Térmico", categoria: "Bazar", precio: 12500, img: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=400" },
       { id: 4, nombre: "Auriculares Inalámbricos", categoria: "Electrónica", precio: 18000, img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400" },
       { id: 5, nombre: "Set de Lapiceras Color", categoria: "Librería", precio: 3200, img: "https://images.unsplash.com/photo-1585336261026-8f5786372966?w=400" },
