@@ -45,9 +45,11 @@
     tailwind.config = {
       darkMode: 'class'
     }
+    
+  </script>
 
-
-let diferirEventoInstalacion;
+ <script>
+  let diferirEventoInstalacion;
 const btnInstalar = document.getElementById('btnInstalar');
 
 // Capturar el evento de instalación que dispara el navegador
@@ -86,8 +88,8 @@ window.addEventListener('appinstalled', () => {
   btnInstalar.style.display = 'none';
   console.log('PWA instalada con éxito');
 });
-    
-  </script>
+</script>
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Favicon -->
