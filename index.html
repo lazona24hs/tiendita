@@ -55,7 +55,7 @@
 <link rel="manifest" href="manifest.json">
   <style>
     /* Transición suave para el cambio de modo de luz */
-    body, header, nav, div, main, footer, button, input {
+    body, header, nav, div, main, footer, button, input, select {
       transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
     }
 
@@ -181,12 +181,12 @@
 
   <nav class="bg-white dark:bg-gray-800 border-b dark:border-gray-700 shadow-sm">
     <div id="categoryContainer" class="max-w-6xl mx-auto px-4 py-3 flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-none">
-      </div>
+    </div>
   </nav>
 
   <main class="max-w-6xl mx-auto px-4 py-8">
     <div id="productsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
-      </div>
+    </div>
   </main>
 
   <button onclick="toggleCartModal()" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl z-50 flex items-center justify-center transition-transform hover:scale-105">
@@ -200,8 +200,9 @@
         &times;
       </button>
       
-      <div class="w-full md:w-1/2 flex items-center justify-center bg-gray-100 dark:bg-gray-900 rounded-xl overflow-hidden min-h-[220px]">
+      <div class="w-full md:w-1/2 flex items-center justify-center bg-gray-100 dark:bg-gray-900 rounded-xl overflow-hidden min-h-[220px] relative">
         <img id="detailProductImage" src="" alt="" class="w-full h-full object-contain max-h-64">
+        <span id="detailProductBadge" class="hidden absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded shadow">SIN STOCK</span>
       </div>
 
       <div class="w-full md:w-1/2 flex flex-col justify-between">
@@ -210,9 +211,15 @@
           <h3 id="detailProductTitle" class="text-xl font-bold text-gray-900 dark:text-white mt-1 mb-2"></h3>
           <p id="detailProductPrice" class="text-2xl font-bold text-green-600 dark:text-green-400 mb-3"></p>
           <p id="detailProductDescription" class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-4"></p>
+
+          <div id="optionContainer" class="mb-4 hidden">
+            <label for="productOptionSelect" class="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-1">Seleccionar Personaje / Modelo:</label>
+            <select id="productOptionSelect" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </select>
+          </div>
         </div>
         
-        <button id="detailAddBtn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+        <button id="detailAddBtn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-xl shadow-md transition flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
           <i class="fa-solid fa-plus"></i> Agregar al carrito
         </button>
       </div>
