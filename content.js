@@ -1,14 +1,14 @@
-const WHATSAPP_NUMBER = "5493412277147";
+ const WHATSAPP_NUMBER = "5493412277147";
 
     const productos = [
-      { id: 1, nombre: "Docena de Medias", categoria: "Ropa", precio: 5300, img: "https://i.imgur.com/Gnw11e4.jpeg?w=400" },
-      { id: 2, nombre: "Kit Regalo Día de la Madre", categoria: "Regalería", precio: 35000, img: "https://i.imgur.com/GtZghk5.jpeg?w=400" },
-      { id: 3, nombre: "Set de Mate Térmico", categoria: "Bazar", precio: 55900, img: "https://i.imgur.com/IySj9u8.png?w=400" },
-      { id: 4, nombre: "Taza Gris Oscuro Mate", categoria: "Bazar", precio: 4500, img: "https://i.imgur.com/3ihlnrL.png?w=400" },
-      { id: 5, nombre: "Set de Lapiceras Color", categoria: "Librería", precio: 3200, img: "https://i.imgur.com/6dARhQZ.jpeg?w=400" },
-      { id: 6, nombre: "Botella Deportiva 1L", categoria: "Bazar", precio: 5400, img: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400" },
-         { id: 7, nombre: "Anotador Hello Kitty", categoria: "Librería", precio: 5400, img: "https://i.imgur.com/WhfNPTN.png?w=400" },
-        { id: 8, nombre: "Llaveros Personajes", categoria: "Accesorios", precio: 3000, img: "https://i.imgur.com/MrLNDWP.png?w=400" }
+      { id: 1, nombre: "Docena de Medias", categoria: "Ropa", precio: 5300, img: "https://i.imgur.com/Gnw11e4.jpeg?w=400", descripcion: "Pack de 12 pares de medias de excelente calidad, suaves y duraderas." },
+      { id: 2, nombre: "Kit Regalo Día de la Madre", categoria: "Regalería", precio: 35000, img: "https://i.imgur.com/GtZghk5.jpeg?w=400", descripcion: "Hermoso set preparado especialmente con selección de artículos de calidad." },
+      { id: 3, nombre: "Set de Mate Térmico", categoria: "Bazar", precio: 55900, img: "https://i.imgur.com/IySj9u8.png?w=400", descripcion: "Mate térmico de acero inoxidable, conserva la temperatura por horas e incluye bombilla." },
+      { id: 4, nombre: "Taza Gris Oscuro Mate", categoria: "Bazar", precio: 4500, img: "https://i.imgur.com/3ihlnrL.png?w=400", descripcion: "Taza de cerámica con acabado mate elegante, ideal para uso diario." },
+      { id: 5, nombre: "Set de Lapiceras Color", categoria: "Librería", precio: 3200, img: "https://i.imgur.com/6dARhQZ.jpeg?w=400", descripcion: "Set variado de lapiceras de tinta gel para apuntes creativos y organizados." },
+      { id: 6, nombre: "Botella Deportiva 1L", categoria: "Bazar", precio: 5400, img: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400", descripcion: "Botella libre de BPA con pico deportivo y medidor de hidratación." },
+      { id: 7, nombre: "Anotador Hello Kitty", categoria: "Librería", precio: 5400, img: "https://i.imgur.com/WhfNPTN.png?w=400", descripcion: "Anotador con tapas duras, hojas rayadas y diseño exclusivo de Hello Kitty." },
+      { id: 8, nombre: "Llaveros Personajes", categoria: "Accesorios", precio: 3000, img: "https://i.imgur.com/MrLNDWP.png?w=400", descripcion: "Llaveros de silicona coleccionables con argolla reforzada." }
     ];
 
     let carrito = [];
@@ -58,8 +58,8 @@ const WHATSAPP_NUMBER = "5493412277147";
 
       grid.innerHTML = lista.map(p => `
         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden flex flex-col justify-between hover:shadow-lg transition">
-          <div>
-            <img src="${p.img}" alt="${p.nombre}" class="w-full h-36 sm:h-48 object-cover">
+          <div class="cursor-pointer" onclick="verDetalleProducto(${p.id})">
+            <img src="${p.img}" alt="${p.nombre}" class="w-full h-36 sm:h-48 object-cover hover:scale-105 transition duration-300">
             <div class="p-3 sm:p-4">
               <span class="text-xs text-indigo-500 dark:text-indigo-400 font-semibold uppercase tracking-wider">${p.categoria}</span>
               <h3 class="font-bold text-gray-800 dark:text-gray-100 text-sm sm:text-base leading-tight mt-1">${p.nombre}</h3>
@@ -73,6 +73,32 @@ const WHATSAPP_NUMBER = "5493412277147";
           </div>
         </div>
       `).join('');
+    }
+
+    // Funciones del Modal de Detalle
+    function verDetalleProducto(id) {
+      const producto = productos.find(p => p.id === id);
+      if (!producto) return;
+
+      document.getElementById('detailProductImage').src = producto.img;
+      document.getElementById('detailProductTitle').innerText = producto.nombre;
+      document.getElementById('detailProductCategory').innerText = producto.categoria;
+      document.getElementById('detailProductPrice').innerText = `$${producto.precio.toLocaleString()}`;
+      document.getElementById('detailProductDescription').innerText = producto.descripcion || 'Sin descripción disponible.';
+
+      const addBtn = document.getElementById('detailAddBtn');
+      addBtn.onclick = function() {
+        agregarAlCarrito(producto.id);
+        cerrarDetalleProducto();
+      };
+
+      document.getElementById('productDetailModal').classList.remove('hidden');
+    }
+
+    function cerrarDetalleProducto(e) {
+      if (!e || e.target.id === 'productDetailModal' || e.target.tagName === 'BUTTON') {
+        document.getElementById('productDetailModal').classList.add('hidden');
+      }
     }
 
     function filtrarProductos() {
