@@ -48,47 +48,7 @@
     
   </script>
 
- <script>
-  let diferirEventoInstalacion;
-const btnInstalar = document.getElementById('btnInstalar');
-
-// Capturar el evento de instalación que dispara el navegador
-window.addEventListener('beforeinstallprompt', (e) => {
-  // Prevenir que el navegador muestre el banner por defecto
-  e.preventDefault();
-  // Guardar el evento para usarlo después
-  diferirEventoInstalacion = e;
-  // Mostrar el botón en tu interfaz
-  btnInstalar.style.display = 'block';
-});
-
-// Escuchar el clic en el botón
-btnInstalar.addEventListener('click', async () => {
-  if (!diferirEventoInstalacion) return;
-  
-  // Mostrar el prompt nativo de instalación
-  diferirEventoInstalacion.prompt();
-  
-  // Esperar la respuesta del usuario
-  const { outcome } = await diferirEventoInstalacion.userChoice;
-  
-  if (outcome === 'accepted') {
-    console.log('El usuario aceptó la instalación');
-  } else {
-    console.log('El usuario rechazó la instalación');
-  }
-  
-  // Limpiar la variable y ocultar el botón
-  diferirEventoInstalacion = null;
-  btnInstalar.style.display = 'none';
-});
-
-// Ocultar el botón si la app ya fue instalada
-window.addEventListener('appinstalled', () => {
-  btnInstalar.style.display = 'none';
-  console.log('PWA instalada con éxito');
-});
-</script>
+ 
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -294,9 +254,7 @@ window.addEventListener('appinstalled', () => {
       <div class="footer-column">
         <h4 class="text-white">Sobre Nosotros</h4>
         <p class="text-gray-400">Ofrecemos las mejores soluciones y productos para nuestros clientes. Calidad y compromiso garantizados en cada compra.</p>
-          <button id="btnInstalar" style="display: none;" class="mi-boton-estilo">
-  📱 Instalar Aplicación
-</button>
+
       </div>
 
       <div class="footer-column">
