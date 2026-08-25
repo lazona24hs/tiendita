@@ -7,7 +7,8 @@ const WHATSAPP_NUMBER = "5493412277147";
       { id: 4, nombre: "Taza Gris Oscuro Mate", categoria: "Bazar", precio: 4500, img: "https://i.imgur.com/3ihlnrL.png?w=400" },
       { id: 5, nombre: "Set de Lapiceras Color", categoria: "Librería", precio: 3200, img: "https://i.imgur.com/6dARhQZ.jpeg?w=400" },
       { id: 6, nombre: "Botella Deportiva 1L", categoria: "Bazar", precio: 5400, img: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400" },
-         { id: 7, nombre: "Anotador Hello Kitty", categoria: "Librería", precio: 5400, img: "https://i.imgur.com/WhfNPTN.png?w=400" }
+         { id: 7, nombre: "Anotador Hello Kitty", categoria: "Librería", precio: 5400, img: "https://i.imgur.com/WhfNPTN.png?w=400" },
+        { id: 8, nombre: "Llaveros Personajes", categoria: "Accesorios", precio: 3000, img: "https://i.imgur.com/MrLNDWP.png?w=400" }
     ];
 
     let carrito = [];
