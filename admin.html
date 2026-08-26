@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Control | MyJ Tienda</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white p-6 font-sans">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-indigo-400">🛍️ Panel de Control - MyJ Tienda</h1>
+
+    <div class="bg-gray-800 p-6 rounded-xl mb-8 border border-gray-700 shadow-lg">
+      <h2 class="text-xl font-bold mb-4" id="formTitle">Agregar Nuevo Producto</h2>
+      <form id="productForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input type="hidden" id="prodId">
+        <input type="text" id="nombre" placeholder="Nombre del producto" class="p-3 rounded-lg bg-gray-700 text-white border border-gray-600" required>
+        <input type="text" id="categoria" placeholder="Categoría (ej: Bazar, Librería)" class="p-3 rounded-lg bg-gray-700 text-white border border-gray-600" required>
+        <input type="number" id="precio" placeholder="Precio ($)" class="p-3 rounded-lg bg-gray-700 text-white border border-gray-600" required>
+        <input type="url" id="img" placeholder="URL de la imagen (ej: Imgur / Unsplash)" class="p-3 rounded-lg bg-gray-700 text-white border border-gray-600" required>
+        <input type="text" id="opciones" placeholder="Opciones separadas por coma (ej: Rojo, Azul, Verde)" class="p-3 rounded-lg bg-gray-700 text-white border border-gray-600 col-span-1 md:col-span-2">
+        <textarea id="descripcion" placeholder="Descripción corta" class="p-3 rounded-lg bg-gray-700 text-white border border-gray-600 col-span-1 md:col-span-2" rows="2"></textarea>
+        
+        <div class="flex items-center gap-2 col-span-1 md:col-span-2">
+          <input type="checkbox" id="stock" checked class="w-5 h-5 accent-indigo-600">
+          <label for="stock" class="text-sm font-semibold">Producto con Stock Disponible</label>
+        </div>
+
+        <button type="submit" class="col-span-1 md:col-span-2 bg-indigo-600 hover:bg-indigo-700 font-bold py-3 rounded-lg transition">
+          Guardar Producto
+        </button>
+      </form>
+    </div>
+
+    <h2 class="text-2xl font-bold mb-4">Productos Publicados</h2>
+    <div id="adminProductList" class="space-y-4"></div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // Reemplaza con tus claves de Firebase
+    const firebaseConfig = {
+  apiKey: "AIzaSyDSQJwv5W5Eeuy5t-lFc23waacT2iCTqRc",
+  authDomain: "myjserv.firebaseapp.com",
+  projectId: "myjserv",
+  storageBucket: "myjserv.firebasestorage.app",
+  messagingSenderId: "799445074705",
+  appId: "1:799445074705:web:ce7f5a003efcef32c502b0",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const form = document.getElementById('productForm');
+    const adminProductList = document.getElementById('adminProductList');
+
+    // Cargar productos en el panel
+    async function loadProducts() {
+      adminProductList.innerHTML = "Cargando productos...";
+      const querySnapshot = await getDocs(collection(db, "productos"));
+      adminProductList.innerHTML = "";
+
+      querySnapshot.forEach((docSnap) => {
+        const p = docSnap.data();
+        const id = docSnap.id;
+
+        adminProductList.innerHTML += `
+          <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex flex-col md:flex-row justify-between items-center gap-4">
+            <img src="${p.img}" class="w-16 h-16 object-cover rounded-lg">
+            <div class="flex-1">
+              <h3 class="font-bold">${p.nombre} - <span class="text-green-400">$${p.precio}</span></h3>
+              <p class="text-xs text-gray-400">${p.categoria} | Stock: ${p.stock ? '✅ Sí' : '❌ No'}</p>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="toggleStock('${id}', ${!p.stock})" class="bg-amber-600 text-xs px-3 py-2 rounded font-bold">Cambiar Stock</button>
+              <button onclick="deleteProduct('${id}')" class="bg-red-600 text-xs px-3 py-2 rounded font-bold">Eliminar</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // Guardar / Crear producto
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const opcionesVal = document.getElementById('opciones').value;
+      
+      const newProd = {
+        nombre: document.getElementById('nombre').value,
+        categoria: document.getElementById('categoria').value,
+        precio: Number(document.getElementById('precio').value),
+        img: document.getElementById('img').value,
+        descripcion: document.getElementById('descripcion').value,
+        stock: document.getElementById('stock').checked,
+        opciones: opcionesVal ? opcionesVal.split(',').map(o => o.trim()) : []
+      };
+
+      await addDoc(collection(db, "productos"), newProd);
+      form.reset();
+      loadProducts();
+    });
+
+    // Cambiar estado de stock
+    window.toggleStock = async (id, newStatus) => {
+      await updateDoc(doc(db, "productos", id), { stock: newStatus });
+      loadProducts();
+    };
+
+    // Eliminar producto
+    window.deleteProduct = async (id) => {
+      if (confirm("¿Seguro que deseas eliminar este producto?")) {
+        await deleteDoc(doc(db, "productos", id));
+        loadProducts();
+      }
+    };
+
+    loadProducts();
+  </script>
+</body>
+</html>
