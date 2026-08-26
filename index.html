@@ -475,32 +475,48 @@
 </div>
 
   <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const banner = document.getElementById("cookie-banner");
-    const acceptBtn = document.getElementById("accept-cookies");
-    const rejectBtn = document.getElementById("reject-cookies");
+<script>
+  let deferredPrompt;
+  const installBanner = document.getElementById('pwa-install-banner');
+  const btnInstall = document.getElementById('btn-install');
+  const btnClose = document.getElementById('btn-close');
 
-    // Verificar si el usuario ya guardó su preferencia
-    const cookieConsent = localStorage.getItem("cookieConsent");
+  // Registrar el Service Worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('SW registrado con éxito:', reg.scope))
+      .catch(err => console.error('Error al registrar SW:', err));
+  }
 
-    if (cookieConsent !== null) {
-      banner.style.display = "none";
-    }
-
-    // Acción al aceptar
-    acceptBtn.addEventListener("click", () => {
-      localStorage.setItem("cookieConsent", "accepted");
-      banner.style.display = "none";
-      // Aquí puedes inicializar scripts de analítica o seguimiento (ej. Google Analytics)
-    });
-
-    // Acción al rechazar
-    rejectBtn.addEventListener("click", () => {
-      localStorage.setItem("cookieConsent", "rejected");
-      banner.style.display = "none";
-      // Aquí puedes deshabilitar la carga de cookies no esenciales
-    });
+  // Capturar el evento INMEDIATAMENTE
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    console.log('✅ El navegador permite instalar la app.');
   });
+
+  // Mostrar el banner al hacer scroll (con un umbral bajo de 50px)
+  window.addEventListener('scroll', () => {
+    if (deferredPrompt && installBanner.style.display !== 'block') {
+      installBanner.style.display = 'block';
+    }
+  });
+
+  // Botón Instalar
+  btnInstall.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    installBanner.style.display = 'none';
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log(`Respuesta del usuario: ${outcome}`);
+    deferredPrompt = null;
+  });
+
+  // Botón Cierra
+  btnClose.addEventListener('click', () => {
+    installBanner.style.display = 'none';
+  });
+</script>
 </script>
 <script>
 // 1. Registrar el Service Worker
