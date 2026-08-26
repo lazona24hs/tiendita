@@ -52,6 +52,43 @@ const WHATSAPP_NUMBER = "5493412277147";
 
     let carrito = [];
     let categoriaActiva = "Todos";
+    let captchaRespuesta = 0;
+    let cuponAplicado = null;
+
+    const cuponesValidos = {
+      "MYJ": 0.00,
+      "MYJ20": 0.20
+    };
+
+    function generarCaptcha() {
+      const num1 = Math.floor(Math.random() * 10) + 1;
+      const num2 = Math.floor(Math.random() * 10) + 1;
+      captchaRespuesta = num1 + num2;
+      document.getElementById('captchaLabel').innerText = `Verificación: ¿Cuánto es ${num1} + ${num2}?`;
+    }
+
+    function validarCaptcha(event) {
+      const input = parseInt(document.getElementById('captchaInput').value);
+      if (input !== captchaRespuesta) {
+        alert("La respuesta del captcha es incorrecta. Intenta nuevamente.");
+        generarCaptcha();
+        document.getElementById('captchaInput').value = '';
+        event.preventDefault();
+        return false;
+      }
+      return true;
+    }
+
+    function toggleContactModal() {
+      const modal = document.getElementById("contactModal");
+      const isHidden = modal.classList.contains("hidden");
+      if (isHidden) {
+        generarCaptcha();
+        modal.classList.remove("hidden");
+      } else {
+        modal.classList.add("hidden");
+      }
+    }
 
     function toggleLuz() {
       const html = document.documentElement;
@@ -122,7 +159,6 @@ const WHATSAPP_NUMBER = "5493412277147";
       }).join('');
     }
 
-    // Modal de Detalle
     function verDetalleProducto(id) {
       const producto = productos.find(p => p.id === id);
       if (!producto) return;
@@ -138,7 +174,6 @@ const WHATSAPP_NUMBER = "5493412277147";
       const optionContainer = document.getElementById('optionContainer');
       const select = document.getElementById('productOptionSelect');
 
-      // Control de Stock
       if (producto.stock === false) {
         badge.classList.remove('hidden');
         addBtn.disabled = true;
@@ -149,7 +184,6 @@ const WHATSAPP_NUMBER = "5493412277147";
         addBtn.innerHTML = `<i class="fa-solid fa-plus"></i> Agregar al carrito`;
       }
 
-      // Control de Opciones / Personajes
       if (producto.opciones && producto.opciones.length > 0) {
         optionContainer.classList.remove('hidden');
         select.innerHTML = producto.opciones.map(opt => `<option value="${opt}">${opt}</option>`).join('');
@@ -223,13 +257,38 @@ const WHATSAPP_NUMBER = "5493412277147";
       actualizarCarrito();
     }
 
+    function aplicarCupon() {
+      const input = document.getElementById("couponInput").value.trim().toUpperCase();
+      const msg = document.getElementById("couponMessage");
+
+      if (cuponesValidos[input]) {
+        cuponAplicado = { codigo: input, porcentaje: cuponesValidos[input] };
+        msg.innerText = `¡Cupón ${input} aplicado con éxito!`;
+        msg.className = "text-xs text-green-500 block";
+      } else {
+        cuponAplicado = null;
+        msg.innerText = "Código de cupón inválido.";
+        msg.className = "text-xs text-red-500 block";
+      }
+      actualizarCarrito();
+    }
+
     function actualizarCarrito() {
       const badge = document.getElementById("cartBadge");
       const itemsContainer = document.getElementById("cartItems");
+      const subtotalContainer = document.getElementById("cartSubtotal");
+      const discountRow = document.getElementById("discountRow");
+      const discountContainer = document.getElementById("cartDiscount");
       const totalContainer = document.getElementById("cartTotal");
 
       const totalItems = carrito.reduce((acc, i) => acc + i.cantidad, 0);
-      const totalPrecio = carrito.reduce((acc, i) => acc + (i.precio * i.cantidad), 0);
+      const subtotal = carrito.reduce((acc, i) => acc + (i.precio * i.cantidad), 0);
+      
+      let descuento = 0;
+      if (cuponAplicado) {
+        descuento = subtotal * cuponAplicado.porcentaje;
+      }
+      const totalFinal = subtotal - descuento;
 
       badge.innerText = totalItems;
       badge.classList.toggle("hidden", totalItems === 0);
@@ -252,7 +311,14 @@ const WHATSAPP_NUMBER = "5493412277147";
         `).join('');
       }
 
-      totalContainer.innerText = `$${totalPrecio.toLocaleString()}`;
+      subtotalContainer.innerText = `$${subtotal.toLocaleString()}`;
+      if (descuento > 0) {
+        discountRow.classList.remove("hidden");
+        discountContainer.innerText = `-$${descuento.toLocaleString()}`;
+      } else {
+        discountRow.classList.add("hidden");
+      }
+      totalContainer.innerText = `$${totalFinal.toLocaleString()}`;
     }
 
     function toggleCartModal() {
@@ -267,12 +333,18 @@ const WHATSAPP_NUMBER = "5493412277147";
         mensaje += `• *${i.nombreMostrado}* x${i.cantidad} ($${(i.precio * i.cantidad).toLocaleString()})\n`;
       });
 
-      const total = carrito.reduce((acc, i) => acc + (i.precio * i.cantidad), 0);
-      mensaje += `\n*Total estimado:* $${total.toLocaleString()}`;
+      const subtotal = carrito.reduce((acc, i) => acc + (i.precio * i.cantidad), 0);
+      let descuento = cuponAplicado ? subtotal * cuponAplicado.porcentaje : 0;
+      const total = subtotal - descuento;
+
+      if (cuponAplicado) {
+        mensaje += `\n*Cupón:* ${cuponAplicado.codigo} (-$${descuento.toLocaleString()})`;
+      }
+
+      mensaje += `\n*Total a pagar:* $${total.toLocaleString()}`;
 
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`, '_blank');
     }
 
-    // Inicialización
     renderizarCategorias();
     renderizarProductos(productos);
