@@ -175,9 +175,22 @@
     background-color: #dc2626;
   }
   </style>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PHGG54LZ');</script>
+<!-- End Google Tag Manager -->
+  
 </head>
 <body class="bg-gray-900 text-gray-100 font-sans antialiased pb-24 dark:bg-gray-900 dark:text-gray-100">
-
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PHGG54LZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+  
   <div id="constructionModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl relative border border-gray-100 dark:border-gray-700">
       <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
@@ -474,7 +487,34 @@
   </div>
 </div>
 
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const banner = document.getElementById("cookie-banner");
+    const acceptBtn = document.getElementById("accept-cookies");
+    const rejectBtn = document.getElementById("reject-cookies");
 
+    // Verificar si el usuario ya guardó su preferencia
+    const cookieConsent = localStorage.getItem("cookieConsent");
+
+    if (cookieConsent !== null) {
+      banner.style.display = "none";
+    }
+
+    // Acción al aceptar
+    acceptBtn.addEventListener("click", () => {
+      localStorage.setItem("cookieConsent", "accepted");
+      banner.style.display = "none";
+      // Aquí puedes inicializar scripts de analítica o seguimiento (ej. Google Analytics)
+    });
+
+    // Acción al rechazar
+    rejectBtn.addEventListener("click", () => {
+      localStorage.setItem("cookieConsent", "rejected");
+      banner.style.display = "none";
+      // Aquí puedes deshabilitar la carga de cookies no esenciales
+    });
+  });
+</script>
 <script>
   let deferredPrompt;
   const installBanner = document.getElementById('pwa-install-banner');
