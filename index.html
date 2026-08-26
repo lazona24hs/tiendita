@@ -290,6 +290,37 @@
     </div>
   </footer>
 
-  <script src="content.js?v=1.0.1"></script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+  apiKey: "AIzaSyDSQJwv5W5Eeuy5t-lFc23waacT2iCTqRc",
+  authDomain: "myjserv.firebaseapp.com",
+  projectId: "myjserv",
+  storageBucket: "myjserv.firebasestorage.app",
+  messagingSenderId: "799445074705",
+  appId: "1:799445074705:web:ce7f5a003efcef32c502b0",
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  let productos = [];
+
+  // Obtener productos en tiempo real desde la Base de Datos
+  async function cargarProductosDesdeBD() {
+    const querySnapshot = await getDocs(collection(db, "productos"));
+    productos = [];
+    querySnapshot.forEach((doc) => {
+      productos.push({ id: doc.id, ...doc.data() });
+    });
+    renderizarCategorias();
+    renderizarProductos(productos);
+  }
+
+  // Carga inicial
+  cargarProductosDesdeBD();
+</script>
 </body>
 </html>
