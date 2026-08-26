@@ -564,18 +564,7 @@ btnClose.addEventListener('click', () => {
 });
   </script>
 
-  <script>
-  // Verificar si el navegador soporta Service Workers
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-      .then((registration) => {
-        console.log('Service Worker registrado con éxito:', registration.scope);
-      })
-      .catch((error) => {
-        console.error('Error al registrar el Service Worker:', error);
-      });
-  }
-</script>
+
 </body>
 
     <div id="pwa-install-banner" style="display: none; position: fixed; bottom: 20px; right: 20px; background: #fff; color: #333; padding: 15px 20px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; font-family: sans-serif;">
