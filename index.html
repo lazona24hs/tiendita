@@ -30,7 +30,7 @@
     "@type": "OnlineStore",
     "name": "MyJ Tienda",
     "url": "https://myjtienda.sytes.net/",
-    "email": "myjtienda@gmail.com",
+    "email": "myjcontacto@proton.me",
     "areaServed": "Rosario, Santa Fe, Argentina",
     "description": "Tienda online de librería, electrónica y bazar con envíos en Rosario.",
     "paymentAccepted": "Mercado Pago"
@@ -52,7 +52,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-title" content="MyJ Store" />
   <link rel="manifest" href="/site.webmanifest" />
-<link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="manifest.json">
   <style>
     /* Transición suave para el cambio de modo de luz */
     body, header, nav, div, main, footer, button, input, select {
@@ -151,6 +151,11 @@
         </div>
 
         <div class="flex items-center gap-2">
+          <button onclick="toggleContactModal()" title="Contacto"
+                  class="w-10 h-10 bg-white/10 dark:bg-gray-800 hover:bg-indigo-500 text-white rounded-full flex items-center justify-center transition hover:scale-105 border border-white/20">
+            <i class="fa-solid fa-envelope text-lg"></i>
+          </button>
+
           <a href="https://instagram.com/tu_usuario" target="_blank" title="Instagram"
              class="w-10 h-10 bg-white/10 dark:bg-gray-800 hover:bg-pink-600 text-white rounded-full flex items-center justify-center transition hover:scale-105 border border-white/20">
             <i class="fa-brands fa-instagram text-lg"></i>
@@ -193,6 +198,54 @@
     <i class="fa-solid fa-cart-shopping text-2xl"></i>
     <span id="cartBadge" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-white hidden">0</span>
   </button>
+
+  <div id="contactModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-md w-full p-6 shadow-2xl relative border border-gray-100 dark:border-gray-700 max-h-[90vh] overflow-y-auto">
+      <button onclick="toggleContactModal()" class="absolute top-3 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-white text-2xl font-bold z-10">
+        &times;
+      </button>
+      
+      <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+        <i class="fa-solid fa-envelope text-indigo-600 dark:text-indigo-400"></i> Formulario de Contacto
+      </h3>
+
+      <form action="https://formspree.io/f/myjcontacto@proton.me" method="POST" onsubmit="return validarCaptcha(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-1">Nombre y Apellido</label>
+          <input type="text" name="nombre" required placeholder="Ej: Juan Pérez" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-1">Teléfono</label>
+          <input type="tel" name="telefono" required placeholder="Ej: 3411234567" class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-1">Asunto</label>
+          <select name="asunto" required class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            <option value="Publicidad">Publicidad</option>
+            <option value="Canjes">Canjes</option>
+            <option value="Producto">Producto</option>
+            <option value="Dudas o Quejas">Dudas o Quejas</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-1">Mensaje</label>
+          <textarea name="mensaje" rows="4" required placeholder="Escribe tu consulta aquí..." class="w-full p-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"></textarea>
+        </div>
+
+        <div class="bg-gray-100 dark:bg-gray-900 p-3 rounded-xl border border-gray-200 dark:border-gray-700">
+          <label id="captchaLabel" class="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1"></label>
+          <input type="number" id="captchaInput" required placeholder="Respuesta" class="w-full p-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+        </div>
+
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje
+        </button>
+      </form>
+    </div>
+  </div>
 
   <div id="productDetailModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden" onclick="cerrarDetalleProducto(event)">
     <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative border border-gray-100 dark:border-gray-700 flex flex-col md:flex-row gap-6 max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
@@ -271,7 +324,7 @@
           <li><a href="#" class="text-gray-400 hover:text-white">Inicio</a></li>
           <li><a href="#" class="text-gray-400 hover:text-white">Productos</a></li>
           <li><a href="#" class="text-gray-400 hover:text-white">Preguntas Frecuentes</a></li>
-          <li><a href="#" class="text-gray-400 hover:text-white">Contacto</a></li>
+          <li><a href="javascript:void(0)" onclick="toggleContactModal()" class="text-gray-400 hover:text-white">Contacto</a></li>
         </ul>
       </div>
 
@@ -279,7 +332,7 @@
         <h4 class="text-white">Contacto</h4>
         <ul class="footer-contact text-gray-400">
           <li>📍 Rosario, Santa Fe</li>
-          <li>📧 myjtienda@gmail.com</li>
+          <li>📧 myjcontacto@proton.me</li>
           <li>💳 Envíos gratis pagando con Mercado Pago</li>
         </ul>
       </div>
@@ -290,6 +343,273 @@
     </div>
   </footer>
 
-  <script src="content.js?v=1.0.1"></script>
+  <script>
+    const WHATSAPP_NUMBER = "5493412277147";
+
+    const productos = [
+      { id: 1, nombre: "Docena de Medias", categoria: "Ropa", precio: 5300, stock: true, img: "https://i.imgur.com/Gnw11e4.jpeg?w=400", descripcion: "Pack de 12 pares de medias de excelente calidad, suaves y duraderas." },
+      { id: 2, nombre: "Kit Regalo Día de la Madre", categoria: "Regalería", precio: 35000, stock: true, img: "https://i.imgur.com/GtZghk5.jpeg?w=400", descripcion: "Hermoso set preparado especialmente con selección de artículos de calidad." },
+      { id: 3, nombre: "Set de Mate Térmico", categoria: "Bazar", precio: 55900, stock: true, opciones: ["Negro", "Verde Militar", "Rosa Pastel"], img: "https://i.imgur.com/IySj9u8.png?w=400", descripcion: "Mate térmico de acero inoxidable, conserva la temperatura por horas e incluye bombilla." },
+      { id: 4, nombre: "Taza Gris Oscuro Mate", categoria: "Bazar", precio: 4500, stock: true, img: "https://i.imgur.com/3ihlnrL.png?w=400", descripcion: "Taza de cerámica con acabado mate elegante, ideal para uso diario." },
+      { id: 5, nombre: "Set de Lapiceras Color", categoria: "Librería", precio: 3200, stock: true, img: "https://i.imgur.com/6dARhQZ.jpeg?w=400", descripcion: "Set variado de lapiceras de tinta gel para apuntes creativos y organizados." },
+      { id: 6, nombre: "Botella Deportiva 1L", categoria: "Bazar", precio: 5400, stock: true, opciones: ["Azul", "Rosa", "Negro"], img: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400", descripcion: "Botella libre de BPA con pico deportivo y medidor de hidratación." },
+      { id: 7, nombre: "Anotador Hello Kitty", categoria: "Librería", precio: 5400, stock: false, img: "https://i.imgur.com/WhfNPTN.png?w=400", descripcion: "Anotador con tapas duras, hojas rayadas y diseño exclusivo de Hello Kitty." },
+      { id: 8, nombre: "Llaveros Personajes", categoria: "Accesorios", precio: 3000, stock: true, opciones: ["Pikachu", "Stitch", "Super Mario", "Spider-Man"], img: "https://i.imgur.com/MrLNDWP.png?w=400", descripcion: "Llaveros de silicona coleccionables con argolla reinforced. Elegí tu personaje preferido." }
+    ];
+
+    let carrito = [];
+    let categoriaActiva = "Todos";
+    let captchaRespuesta = 0;
+
+    function generarCaptcha() {
+      const num1 = Math.floor(Math.random() * 10) + 1;
+      const num2 = Math.floor(Math.random() * 10) + 1;
+      captchaRespuesta = num1 + num2;
+      document.getElementById('captchaLabel').innerText = `Verificación: ¿Cuánto es ${num1} + ${num2}?`;
+    }
+
+    function validarCaptcha(event) {
+      const input = parseInt(document.getElementById('captchaInput').value);
+      if (input !== captchaRespuesta) {
+        alert("La respuesta del captcha es incorrecta. Intenta nuevamente.");
+        generarCaptcha();
+        document.getElementById('captchaInput').value = '';
+        event.preventDefault();
+        return false;
+      }
+      return true;
+    }
+
+    function toggleContactModal() {
+      const modal = document.getElementById("contactModal");
+      const isHidden = modal.classList.contains("hidden");
+      if (isHidden) {
+        generarCaptcha();
+        modal.classList.remove("hidden");
+      } else {
+        modal.classList.add("hidden");
+      }
+    }
+
+    function toggleLuz() {
+      const html = document.documentElement;
+      const body = document.body;
+      const lightIcon = document.getElementById("lightIcon");
+      const isDark = html.classList.contains("dark");
+
+      if (isDark) {
+        html.classList.remove("dark");
+        body.classList.remove("bg-gray-900", "text-gray-100");
+        body.classList.add("bg-gray-50", "text-gray-800");
+        lightIcon.className = "fa-solid fa-moon text-lg";
+      } else {
+        html.classList.add("dark");
+        body.classList.remove("bg-gray-50", "text-gray-800");
+        body.classList.add("bg-gray-900", "text-gray-100");
+        lightIcon.className = "fa-solid fa-lightbulb text-lg";
+      }
+      renderizarCategorias();
+      filtrarProductos();
+    }
+
+    function renderizarCategorias() {
+      const categorias = ["Todos", ...new Set(productos.map(p => p.categoria))];
+      const container = document.getElementById("categoryContainer");
+      const isDark = document.documentElement.classList.contains("dark");
+
+      container.innerHTML = categorias.map(cat => `
+        <button onclick="filtrarPorCategoria('${cat}')" 
+                class="px-4 py-1.5 rounded-full text-sm font-medium transition ${categoriaActiva === cat ? 'bg-indigo-600 text-white' : (isDark ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-100 text-gray-600 hover:bg-gray-200')}">
+          ${cat}
+        </button>
+      `).join('');
+    }
+
+    function renderizarProductos(lista) {
+      const grid = document.getElementById("productsGrid");
+      if (lista.length === 0) {
+        grid.innerHTML = `<p class="col-span-full text-center text-gray-500 dark:text-gray-400 py-12">No se encontraron productos</p>`;
+        return;
+      }
+
+      grid.innerHTML = lista.map(p => {
+        const sinStock = p.stock === false;
+        return `
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden flex flex-col justify-between hover:shadow-lg transition relative ${sinStock ? 'opacity-75' : ''}">
+            
+            ${sinStock ? `<span class="absolute top-2 left-2 z-10 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">SIN STOCK</span>` : ''}
+
+            <div class="cursor-pointer" onclick="verDetalleProducto(${p.id})">
+              <img src="${p.img}" alt="${p.nombre}" class="w-full h-36 sm:h-48 object-cover hover:scale-105 transition duration-300 ${sinStock ? 'grayscale-[50%]' : ''}">
+              <div class="p-3 sm:p-4">
+                <span class="text-xs text-indigo-500 dark:text-indigo-400 font-semibold uppercase tracking-wider">${p.categoria}</span>
+                <h3 class="font-bold text-gray-800 dark:text-gray-100 text-sm sm:text-base leading-tight mt-1">${p.nombre}</h3>
+              </div>
+            </div>
+            
+            <div class="p-3 sm:p-4 pt-0 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+              <span class="text-lg font-extrabold text-gray-900 dark:text-white">$${p.precio.toLocaleString()}</span>
+              
+              <button onclick="verDetalleProducto(${p.id})" 
+                      class="w-full sm:w-auto ${sinStock ? 'bg-gray-300 text-gray-500 dark:bg-gray-700 dark:text-gray-400 cursor-not-allowed' : 'bg-indigo-50 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-300 hover:bg-indigo-600 hover:text-white'} px-3 py-1.5 rounded-lg text-sm font-semibold transition flex items-center justify-center gap-1">
+                ${sinStock ? 'Agotado' : (p.opciones ? 'Elegir' : 'Agregar')}
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function verDetalleProducto(id) {
+      const producto = productos.find(p => p.id === id);
+      if (!producto) return;
+
+      document.getElementById('detailProductImage').src = producto.img;
+      document.getElementById('detailProductTitle').innerText = producto.nombre;
+      document.getElementById('detailProductCategory').innerText = producto.categoria;
+      document.getElementById('detailProductPrice').innerText = `$${producto.precio.toLocaleString()}`;
+      document.getElementById('detailProductDescription').innerText = producto.descripcion || 'Sin descripción disponible.';
+
+      const badge = document.getElementById('detailProductBadge');
+      const addBtn = document.getElementById('detailAddBtn');
+      const optionContainer = document.getElementById('optionContainer');
+      const select = document.getElementById('productOptionSelect');
+
+      if (producto.stock === false) {
+        badge.classList.remove('hidden');
+        addBtn.disabled = true;
+        addBtn.innerText = "Producto Agotado";
+      } else {
+        badge.classList.add('hidden');
+        addBtn.disabled = false;
+        addBtn.innerHTML = `<i class="fa-solid fa-plus"></i> Agregar al carrito`;
+      }
+
+      if (producto.opciones && producto.opciones.length > 0) {
+        optionContainer.classList.remove('hidden');
+        select.innerHTML = producto.opciones.map(opt => `<option value="${opt}">${opt}</option>`).join('');
+      } else {
+        optionContainer.classList.add('hidden');
+        select.innerHTML = '';
+      }
+
+      addBtn.onclick = function() {
+        if (producto.stock === false) return;
+        
+        let opcionSeleccionada = null;
+        if (producto.opciones && producto.opciones.length > 0) {
+          opcionSeleccionada = select.value;
+        }
+
+        agregarAlCarrito(producto.id, opcionSeleccionada);
+        cerrarDetalleProducto();
+      };
+
+      document.getElementById('productDetailModal').classList.remove('hidden');
+    }
+
+    function cerrarDetalleProducto(e) {
+      if (!e || e.target.id === 'productDetailModal' || e.target.tagName === 'BUTTON') {
+        document.getElementById('productDetailModal').classList.add('hidden');
+      }
+    }
+
+    function filtrarProductos() {
+      const texto = document.getElementById("searchInput").value.toLowerCase();
+      const filtrados = productos.filter(p => {
+        const coincideCat = categoriaActiva === "Todos" || p.categoria === categoriaActiva;
+        const coincideTexto = p.nombre.toLowerCase().includes(texto);
+        return coincideCat && coincideTexto;
+      });
+      renderizarProductos(filtrados);
+    }
+
+    function filtrarPorCategoria(cat) {
+      categoriaActiva = cat;
+      renderizarCategorias();
+      filtrarProductos();
+    }
+
+    function agregarAlCarrito(id, opcion = null) {
+      const producto = productos.find(p => p.id === id);
+      if (!producto || producto.stock === false) return;
+
+      const cartItemId = opcion ? `${id}-${opcion}` : `${id}`;
+      const itemExistente = carrito.find(i => i.cartItemId === cartItemId);
+
+      if (itemExistente) {
+        itemExistente.cantidad++;
+      } else {
+        const nombreMostrado = opcion ? `${producto.nombre} (${opcion})` : producto.nombre;
+        carrito.push({ ...producto, cartItemId, nombreMostrado, opcion, cantidad: 1 });
+      }
+
+      actualizarCarrito();
+    }
+
+    function cambiarCantidad(cartItemId, cambio) {
+      const item = carrito.find(i => i.cartItemId === cartItemId);
+      if (item) {
+        item.cantidad += cambio;
+        if (item.cantidad <= 0) {
+          carrito = carrito.filter(i => i.cartItemId !== cartItemId);
+        }
+      }
+      actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+      const badge = document.getElementById("cartBadge");
+      const itemsContainer = document.getElementById("cartItems");
+      const totalContainer = document.getElementById("cartTotal");
+
+      const totalItems = carrito.reduce((acc, i) => acc + i.cantidad, 0);
+      const totalPrecio = carrito.reduce((acc, i) => acc + (i.precio * i.cantidad), 0);
+
+      badge.innerText = totalItems;
+      badge.classList.toggle("hidden", totalItems === 0);
+
+      if (carrito.length === 0) {
+        itemsContainer.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400 my-8">El carrito está vacío</p>`;
+      } else {
+        itemsContainer.innerHTML = carrito.map(i => `
+          <div class="py-3 flex justify-between items-center">
+            <div class="flex-1 pr-2">
+              <h4 class="font-bold text-sm text-gray-800 dark:text-gray-200">${i.nombreMostrado}</h4>
+              <p class="text-xs text-gray-500 dark:text-gray-400">$${i.precio.toLocaleString()} x ${i.cantidad}</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="cambiarCantidad('${i.cartItemId}', -1)" class="w-6 h-6 bg-gray-200 dark:bg-gray-700 dark:text-white rounded flex items-center justify-center font-bold text-gray-600">-</button>
+              <span class="text-sm font-bold text-gray-800 dark:text-gray-200">${i.cantidad}</span>
+              <button onclick="cambiarCantidad('${i.cartItemId}', 1)" class="w-6 h-6 bg-gray-200 dark:bg-gray-700 dark:text-white rounded flex items-center justify-center font-bold text-gray-600">+</button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      totalContainer.innerText = `$${totalPrecio.toLocaleString()}`;
+    }
+
+    function toggleCartModal() {
+      document.getElementById("cartModal").classList.toggle("hidden");
+    }
+
+    function enviarWhatsApp() {
+      if (carrito.length === 0) return alert("Tu carrito está vacío");
+
+      let mensaje = "¡Hola! Quisiera realizar el siguiente pedido:\n\n";
+      carrito.forEach(i => {
+        mensaje += `• *${i.nombreMostrado}* x${i.cantidad} ($${(i.precio * i.cantidad).toLocaleString()})\n`;
+      });
+
+      const total = carrito.reduce((acc, i) => acc + (i.precio * i.cantidad), 0);
+      mensaje += `\n*Total estimado:* $${total.toLocaleString()}`;
+
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`, '_blank');
+    }
+
+    renderizarCategorias();
+    renderizarProductos(productos);
+  </script>
 </body>
 </html>
